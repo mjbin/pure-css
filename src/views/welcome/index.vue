@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import ReSelect from "@/components/ReSelect";
 import ReNumberRange from "@/components/ReNumberRange";
+import searchForm from "./searchForm.vue";
 
 defineOptions({
   name: "Welcome"
@@ -25,11 +26,17 @@ const options = ref([
     label: "aab"
   }
 ]);
+
+const handleSearch = form => {
+  console.log(form);
+};
 </script>
 
 <template>
   <div>
     <h1>Pure-Admin-Thin（非国际化版本）</h1>
+
+    <searchForm @change="handleSearch" />
     <div class="w-[200px]">
       <re-select v-model="value" multiple :options="options" />
     </div>
