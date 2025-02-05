@@ -1,51 +1,42 @@
 <script setup lang="ts">
-import { ref, reactive } from "vue";
-import ReSelect from "@/components/ReSelect";
-import ReNumberRange from "@/components/ReNumberRange";
-import searchForm from "./searchForm.vue";
-import ReDateRange from "@/components/ReDateRange";
-
-defineOptions({
-  name: "Welcome"
-});
-
-const value = ref("111");
-const min = ref();
-const max = ref(10);
-const type = ref("lt");
-const options = ref([
-  {
-    value: "aaa",
-    label: "aaa"
-  },
-  {
-    value: "bbb",
-    label: "bbb"
-  },
-  {
-    value: "aab",
-    label: "aab"
-  }
-]);
-
-const handleSearch = form => {
-  console.log(form);
-};
-
-const dateRange = ref([]);
+import AccountStatistics from "./components/accountStatistics.vue";
 </script>
 
 <template>
   <div>
-    <h1>Pure-Admin-Thin（非国际化版本）</h1>
-
-    <searchForm @change="handleSearch" />
-    <div class="w-[200px]">
-      <re-select v-model="value" multiple :options="options" />
-    </div>
-    {{ min }} {{ max }} {{ type }}
-    <re-number-range v-model:min="min" v-model:max="max" v-model:type="type" />
-    {{ dateRange }}
-    <re-date-range v-model="dateRange" />
+    <el-row :gutter="20">
+      <el-col :xs="24" :sm="24" :md="8" :span="8">
+        <el-card shadow="hover" class="card">
+          <template #header>
+            <span class="text-[#4aa4ea] font-bold border-b-2 pb-4"
+              >账户统计</span
+            >
+          </template>
+          <div>
+            <AccountStatistics />
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :xs="24" :sm="24" :md="16" :span="16">
+        <el-card shadow="hover" class="card">
+          <template #header>
+            <span class="text-[#4aa4ea] font-bold border-b-2 pb-4"
+              >卡片销售情况</span
+            >
+          </template>
+          <div>456</div>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.card {
+  margin-bottom: 16px;
+
+  :deep(.el-card__header) {
+    padding: 14px 20px;
+  }
+}
+</style>
