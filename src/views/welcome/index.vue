@@ -3,6 +3,7 @@ import { ref, reactive } from "vue";
 import ReSelect from "@/components/ReSelect";
 import ReNumberRange from "@/components/ReNumberRange";
 import searchForm from "./searchForm.vue";
+import ReDateRange from "@/components/ReDateRange";
 
 defineOptions({
   name: "Welcome"
@@ -30,6 +31,8 @@ const options = ref([
 const handleSearch = form => {
   console.log(form);
 };
+
+const dateRange = ref([]);
 </script>
 
 <template>
@@ -42,5 +45,7 @@ const handleSearch = form => {
     </div>
     {{ min }} {{ max }} {{ type }}
     <re-number-range v-model:min="min" v-model:max="max" v-model:type="type" />
+    {{ dateRange }}
+    <re-date-range v-model="dateRange" />
   </div>
 </template>
