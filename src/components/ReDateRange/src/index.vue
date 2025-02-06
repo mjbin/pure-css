@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useAttrs, ref } from "vue";
+import { useAttrs, ref, watch } from "vue";
 import dayjs from "dayjs";
 
 defineOptions({
@@ -7,17 +7,24 @@ defineOptions({
 });
 
 interface Props {
-  modelValue?: any[];
+  modelValue?: any[]; // 时间范围
+  defaultDateBtn?: string; // 默认选中的日期按钮
 }
 
 const props = defineProps<Props>();
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["update:modelValue", "onChange"]);
 
 const dateValue = ref(props.modelValue);
 const attrs = useAttrs();
 
+const changeDate = val => {
+  currentBtn.value = "";
+  handleChange(val);
+};
+
 const handleChange = val => {
   emit("update:modelValue", val);
+  emit("onChange", val);
 };
 
 const currentBtn = ref();
@@ -83,6 +90,17 @@ const btns = [
     }
   }
 ];
+
+watch(
+  () => props.defaultDateBtn,
+  val => {
+    const current = btns.find(i => i.btnText === val);
+    if (current) {
+      current.onClick(current.btnText);
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
@@ -91,23 +109,23 @@ const btns = [
       v-for="(item, index) in btns"
       :key="index"
       class="!ml-1"
-      :type="currentBtn === index ? 'primary' : item.type"
-      :text="currentBtn === index ? false : item.text"
+      :type="currentBtn === item.btnText ? 'primary' : item.type"
+      :text="currentBtn === item.btnText ? false : item.text"
       size="small"
-      @click="item.onClick(index)"
+      @click="item.onClick(item.btnText)"
     >
       {{ item.btnText }}
     </el-button>
     <el-date-picker
       v-model="dateValue"
-      class="ml-1"
+      class="ml-1 !w-[260px]"
       type="daterange"
       unlink-panels
       range-separator="至"
       start-placeholder="开始日期"
       end-placeholder="结束日期"
       v-bind="attrs"
-      @change="handleChange"
+      @change="changeDate"
     />
   </div>
 </template>

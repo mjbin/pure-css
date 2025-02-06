@@ -24,7 +24,7 @@ import Fullscreen from "@iconify-icons/ri/fullscreen-fill";
 import CloseAllTags from "@iconify-icons/ri/subtract-line";
 import CloseOtherTags from "@iconify-icons/ri/text-spacing";
 import CloseRightTags from "@iconify-icons/ri/text-direction-l";
-import CloseLeftTags from "@iconify-icons/ri/text-direction-r";
+// import CloseLeftTags from "@iconify-icons/ri/text-direction-r";
 import RefreshRight from "@iconify-icons/ep/refresh-right";
 import Close from "@iconify-icons/ep/close";
 
@@ -75,13 +75,13 @@ export function useTags() {
       disabled: multiTags.value.length > 1 ? false : true,
       show: true
     },
-    {
-      icon: CloseLeftTags,
-      text: "关闭左侧标签页",
-      divided: true,
-      disabled: multiTags.value.length > 1 ? false : true,
-      show: true
-    },
+    // {
+    //   icon: CloseLeftTags,
+    //   text: "关闭左侧标签页",
+    //   divided: true,
+    //   disabled: multiTags.value.length > 1 ? false : true,
+    //   show: true
+    // },
     {
       icon: CloseRightTags,
       text: "关闭右侧标签页",

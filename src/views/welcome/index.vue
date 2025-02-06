@@ -1,51 +1,69 @@
 <script setup lang="ts">
-import { ref, reactive } from "vue";
-import ReSelect from "@/components/ReSelect";
-import ReNumberRange from "@/components/ReNumberRange";
-import searchForm from "./searchForm.vue";
-import ReDateRange from "@/components/ReDateRange";
+import { ref } from "vue";
+import AccountStatistics from "./components/accountStatistics.vue";
+import SalesSituation from "./components/salesSituation.vue";
+import CommissionStatistics from "./components/commissionStatistics.vue";
+import OrderStatistics from "./components/orderStatistics.vue";
+import CardTable from "./components/CardTable/index.vue";
 
-defineOptions({
-  name: "Welcome"
-});
-
-const value = ref("111");
-const min = ref();
-const max = ref(10);
-const type = ref("lt");
-const options = ref([
-  {
-    value: "aaa",
-    label: "aaa"
-  },
-  {
-    value: "bbb",
-    label: "bbb"
-  },
-  {
-    value: "aab",
-    label: "aab"
-  }
-]);
-
-const handleSearch = form => {
-  console.log(form);
-};
-
-const dateRange = ref([]);
+const activeName = ref("commission");
 </script>
 
 <template>
   <div>
-    <h1>Pure-Admin-Thin（非国际化版本）</h1>
+    <el-row :gutter="20">
+      <el-col :xs="24" :sm="24" :md="8" :span="8">
+        <el-card shadow="hover" class="card__px-0">
+          <el-tabs :model-value="'commission'">
+            <el-tab-pane label="账户统计" name="commission">
+              <AccountStatistics />
+            </el-tab-pane>
+          </el-tabs>
+        </el-card>
+      </el-col>
+      <el-col :xs="24" :sm="24" :md="16" :span="16">
+        <el-card shadow="hover" class="card__px-0">
+          <el-tabs :model-value="'sales'">
+            <el-tab-pane label="卡片销售情况" name="sales">
+              <SalesSituation />
+            </el-tab-pane>
+          </el-tabs>
+        </el-card>
+      </el-col>
+    </el-row>
 
-    <searchForm @change="handleSearch" />
-    <div class="w-[200px]">
-      <re-select v-model="value" multiple :options="options" />
-    </div>
-    {{ min }} {{ max }} {{ type }}
-    <re-number-range v-model:min="min" v-model:max="max" v-model:type="type" />
-    {{ dateRange }}
-    <re-date-range v-model="dateRange" />
+    <el-card shadow="hover" class="card__px-0">
+      <el-tabs v-model="activeName">
+        <el-tab-pane label="佣金统计" name="commission">
+          <CommissionStatistics />
+        </el-tab-pane>
+        <el-tab-pane label="订单统计" name="order">
+          <OrderStatistics />
+        </el-tab-pane>
+      </el-tabs>
+    </el-card>
+
+    <el-card shadow="hover" class="card__px-0">
+      <el-tabs :model-value="'cardActivate'">
+        <el-tab-pane label="卡片激活情况" name="cardActivate">
+          <CardTable />
+        </el-tab-pane>
+      </el-tabs>
+    </el-card>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.card__px-0 {
+  margin-bottom: 16px;
+
+  :deep(.el-card__body) {
+    padding: 14px 20px 20px;
+  }
+
+  :deep(.el-tabs__item) {
+    padding-bottom: 14px;
+    font-size: 16px;
+  }
+}
+</style>

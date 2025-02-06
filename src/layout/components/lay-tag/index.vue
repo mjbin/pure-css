@@ -314,19 +314,19 @@ function onClickDrop(key, item, selectRoute?: RouteConfigs) {
       // 关闭当前标签页
       deleteMenu(selectTagRoute);
       break;
+    // case 2:
+    //   // 关闭左侧标签页
+    //   deleteMenu(selectTagRoute, "left");
+    //   break;
     case 2:
-      // 关闭左侧标签页
-      deleteMenu(selectTagRoute, "left");
-      break;
-    case 3:
       // 关闭右侧标签页
       deleteMenu(selectTagRoute, "right");
       break;
-    case 4:
+    case 3:
       // 关闭其他标签页
       deleteMenu(selectTagRoute, "other");
       break;
-    case 5:
+    case 4:
       // 关闭全部标签页
       useMultiTagsStoreHook().handleTags("splice", "", {
         startIndex: fixedTags.length,
@@ -336,7 +336,7 @@ function onClickDrop(key, item, selectRoute?: RouteConfigs) {
       // router.push(fixedTags[fixedTags.length - 1]?.path);
       handleAliveRoute(route as ToRouteType);
       break;
-    case 6:
+    case 5:
       // 内容区全屏
       onContentFullScreen();
       setTimeout(() => {

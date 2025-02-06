@@ -1,6 +1,7 @@
 import App from "./App.vue";
 import router from "./router";
 import { setupStore } from "@/store";
+import * as echarts from "echarts";
 import { getPlatformConfig } from "./config";
 import { MotionPlugin } from "@vueuse/motion";
 // import { useEcharts } from "@/plugins/echarts";
@@ -23,6 +24,8 @@ import "./assets/iconfont/iconfont.js";
 import "./assets/iconfont/iconfont.css";
 
 const app = createApp(App);
+
+app.config.globalProperties.$echarts = echarts;
 
 // 自定义指令
 import * as directives from "@/directives";
