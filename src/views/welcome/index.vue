@@ -4,6 +4,7 @@ import AccountStatistics from "./components/accountStatistics.vue";
 import SalesSituation from "./components/salesSituation.vue";
 import CommissionStatistics from "./components/commissionStatistics.vue";
 import OrderStatistics from "./components/orderStatistics.vue";
+import CardTable from "./components/CardTable/index.vue";
 
 const activeName = ref("commission");
 </script>
@@ -41,12 +42,20 @@ const activeName = ref("commission");
         </el-tab-pane>
       </el-tabs>
     </el-card>
+
+    <el-card shadow="hover" class="card__px-0">
+      <el-tabs :model-value="'cardActivate'">
+        <el-tab-pane label="卡片激活情况" name="cardActivate">
+          <CardTable />
+        </el-tab-pane>
+      </el-tabs>
+    </el-card>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .card__px-0 {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 
   :deep(.el-card__body) {
     padding: 14px 20px 20px;

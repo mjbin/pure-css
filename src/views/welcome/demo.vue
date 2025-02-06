@@ -10,8 +10,9 @@ defineOptions({
 });
 
 const value = ref("111");
-const min = ref();
-const max = ref(10);
+// const min = ref();
+// const max = ref(10);
+const numberRange = ref([]);
 const type = ref("lt");
 const options = ref([
   {
@@ -41,8 +42,8 @@ const dateRange = ref([]);
     <div class="w-[200px]">
       <re-select v-model="value" multiple :options="options" />
     </div>
-    {{ min }} {{ max }} {{ type }}
-    <re-number-range v-model:min="min" v-model:max="max" v-model:type="type" />
+    {{ numberRange }}
+    <re-number-range v-model="numberRange" v-model:type="type" />
     {{ dateRange }}
     <re-date-range v-model="dateRange" />
   </div>

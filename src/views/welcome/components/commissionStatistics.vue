@@ -55,12 +55,16 @@ const formatNumber = (num: number) => {
 
 const barChartData = [
   {
-    requireData: [2101, 5288, 4239, 4962, 6752, 5208, 7450],
-    questionData: [2216, 1148, 1255, 1788, 4821, 1973, 4379]
+    xAxisData: ["周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+    totalData: [2101, 5288, 4239, 4962, 6752, 5208, 7450],
+    firstData: [2216, 1148, 1255, 1788, 4821, 1973, 4379],
+    moreData: [2101, 3280, 4400, 1788, 5752, 4821, 7600]
   },
   {
-    requireData: [2101, 3280, 4400, 4962, 5752, 6889, 7600],
-    questionData: [2116, 3148, 3255, 3788, 4821, 4970, 5390]
+    xAxisData: ["a", "b", "c"],
+    totalData: [2101, 5288, 4239],
+    firstData: [2216, 1148, 1255],
+    moreData: [2101, 3280, 4400]
   }
 ];
 </script>
@@ -98,7 +102,10 @@ const barChartData = [
     </div>
   </div>
   <ChartLine
-    :requireData="barChartData[type].requireData"
-    :questionData="barChartData[type].questionData"
+    class="mt-2"
+    :xAxisData="barChartData[type].xAxisData"
+    :totalData="barChartData[type].totalData"
+    :firstData="barChartData[type].firstData"
+    :moreData="barChartData[type].moreData"
   />
 </template>

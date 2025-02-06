@@ -3,11 +3,19 @@ import { useDark, useECharts } from "@pureadmin/utils";
 import { type PropType, ref, computed, watch, nextTick } from "vue";
 
 const props = defineProps({
-  requireData: {
+  xAxisData: {
+    type: Array as PropType<Array<string>>,
+    default: () => []
+  },
+  totalData: {
     type: Array as PropType<Array<number>>,
     default: () => []
   },
-  questionData: {
+  firstData: {
+    type: Array as PropType<Array<number>>,
+    default: () => []
+  },
+  moreData: {
     type: Array as PropType<Array<number>>,
     default: () => []
   }
@@ -27,7 +35,6 @@ watch(
   async () => {
     await nextTick(); // 确保DOM更新完成后再执行
     setOptions({
-      container: ".bar-card",
       color: ["#41b6ff", "#e85f33"],
       tooltip: {
         trigger: "axis",
@@ -41,7 +48,7 @@ watch(
         right: 0
       },
       legend: {
-        data: ["需求人数", "提问数量"],
+        data: ["总利润", "首充返润", "多充返润"],
         textStyle: {
           color: "#606266",
           fontSize: "0.875rem"
@@ -51,7 +58,7 @@ watch(
       xAxis: [
         {
           type: "category",
-          data: ["周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+          data: props.xAxisData,
           axisLabel: {
             fontSize: "0.875rem"
           },
@@ -74,24 +81,34 @@ watch(
       ],
       series: [
         {
-          name: "需求人数",
-          type: "bar",
-          barWidth: 10,
+          name: "总利润",
+          type: "line",
+          smooth: true,
           itemStyle: {
-            color: "#41b6ff",
+            color: "#289fe8",
             borderRadius: [10, 10, 0, 0]
           },
-          data: props.requireData
+          data: props.totalData
         },
         {
-          name: "提问数量",
-          type: "bar",
-          barWidth: 10,
+          name: "首充返润",
+          type: "line",
+          smooth: true,
           itemStyle: {
-            color: "#e86033ce",
+            color: "#5dad23",
             borderRadius: [10, 10, 0, 0]
           },
-          data: props.questionData
+          data: props.firstData
+        },
+        {
+          name: "多充返润",
+          type: "line",
+          smooth: true,
+          itemStyle: {
+            color: "#fc8f31",
+            borderRadius: [10, 10, 0, 0]
+          },
+          data: props.moreData
         }
       ]
     });
