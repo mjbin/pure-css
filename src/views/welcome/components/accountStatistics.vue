@@ -14,7 +14,7 @@ const formatAmount = (amount: number) => {
 <template>
   <div class="flex flex-col gap-6 text-sm">
     <div class="flex items-center gap-4">
-      <div class="bg-[#ffd666] rounded-full p-4" />
+      <div class="w-16 h-16 bg-[#69b1ff] rounded-full mx-auto" />
       <div class="flex-1">
         <div class="flex items-center justify-between">
           <div class="text-gray-500 flex items-center gap-1">
@@ -30,8 +30,8 @@ const formatAmount = (amount: number) => {
         </div>
       </div>
     </div>
-    <div class="grid grid-cols-2 gap-4">
-      <div class="flex flex-col border-r border-[#ccc]">
+    <div class="grid grid-cols-2 gap-4 py-6">
+      <div class="flex flex-col border-r border-gray-200">
         <div class="text-gray-500 flex items-center justify-center gap-1">
           待支付成本
           <el-tooltip content="待支付成本说明" placement="top">

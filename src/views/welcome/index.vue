@@ -1,42 +1,60 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import AccountStatistics from "./components/accountStatistics.vue";
+import SalesSituation from "./components/salesSituation.vue";
+import CommissionStatistics from "./components/commissionStatistics.vue";
+import OrderStatistics from "./components/orderStatistics.vue";
+
+const activeName = ref("commission");
 </script>
 
 <template>
   <div>
     <el-row :gutter="20">
       <el-col :xs="24" :sm="24" :md="8" :span="8">
-        <el-card shadow="hover" class="card">
-          <template #header>
-            <span class="text-[#4aa4ea] font-bold border-b-2 pb-4"
-              >账户统计</span
-            >
-          </template>
-          <div>
-            <AccountStatistics />
-          </div>
+        <el-card shadow="hover" class="card__px-0">
+          <el-tabs :model-value="'commission'">
+            <el-tab-pane label="账户统计" name="commission">
+              <AccountStatistics />
+            </el-tab-pane>
+          </el-tabs>
         </el-card>
       </el-col>
       <el-col :xs="24" :sm="24" :md="16" :span="16">
-        <el-card shadow="hover" class="card">
-          <template #header>
-            <span class="text-[#4aa4ea] font-bold border-b-2 pb-4"
-              >卡片销售情况</span
-            >
-          </template>
-          <div>456</div>
+        <el-card shadow="hover" class="card__px-0">
+          <el-tabs :model-value="'sales'">
+            <el-tab-pane label="卡片销售情况" name="sales">
+              <SalesSituation />
+            </el-tab-pane>
+          </el-tabs>
         </el-card>
       </el-col>
     </el-row>
+
+    <el-card shadow="hover" class="card__px-0">
+      <el-tabs v-model="activeName">
+        <el-tab-pane label="佣金统计" name="commission">
+          <CommissionStatistics />
+        </el-tab-pane>
+        <el-tab-pane label="订单统计" name="order">
+          <OrderStatistics />
+        </el-tab-pane>
+      </el-tabs>
+    </el-card>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.card {
-  margin-bottom: 16px;
+.card__px-0 {
+  margin-bottom: 20px;
 
-  :deep(.el-card__header) {
-    padding: 14px 20px;
+  :deep(.el-card__body) {
+    padding: 14px 20px 20px;
+  }
+
+  :deep(.el-tabs__item) {
+    padding-bottom: 14px;
+    font-size: 16px;
   }
 }
 </style>
