@@ -191,3 +191,39 @@ declare global {
     };
   }
 }
+
+declare namespace SearchForm {
+  /** 业务表单 */
+  interface formData {
+    // 表单对象
+    [propname: string]: any;
+  }
+
+  interface FormCondition {
+    itemType?: string;
+    prop: any;
+    props?: formData;
+    label?: string;
+    placeholder?: any;
+    autoVisible?: boolean;
+    defaultValue?: string | string[] | number[] | null;
+    clearable?: boolean;
+    sm?: number;
+    md?: number;
+    lg?: number;
+    xl?: number;
+    multiple?: boolean;
+    isRequired?: boolean;
+    renderName?: string;
+    options?: array;
+    change?: Function;
+    labelKey?: string;
+    valueKey?: string;
+    propLabel?: string | string[];
+  }
+  /** 列表搜索表单 */
+  interface FormOpt {
+    inline: boolean;
+    conditions?: FormCondition[];
+  }
+}

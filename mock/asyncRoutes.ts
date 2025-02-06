@@ -54,6 +54,25 @@ const permissionRouter = {
     }
   ]
 };
+// 套餐管理相关路由
+const setMenuRouter = {
+  path: "/setMenu",
+  meta: {
+    title: "套餐管理",
+    icon: "ep:document",
+    rank: 11
+  },
+  children: [
+    {
+      path: "/setMenu/index",
+      component: "setMenu/index",
+      name: "SetMenu",
+      meta: {
+        title: "套餐管理"
+      }
+    }
+  ]
+};
 
 export default defineFakeRoute([
   {
@@ -62,7 +81,8 @@ export default defineFakeRoute([
     response: () => {
       return {
         success: true,
-        data: [permissionRouter]
+        // data: [permissionRouter]
+        data: [permissionRouter, setMenuRouter]
       };
     }
   }
