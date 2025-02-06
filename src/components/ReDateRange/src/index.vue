@@ -17,6 +17,11 @@ const emit = defineEmits(["update:modelValue", "onChange"]);
 const dateValue = ref(props.modelValue);
 const attrs = useAttrs();
 
+const changeDate = val => {
+  currentBtn.value = "";
+  handleChange(val);
+};
+
 const handleChange = val => {
   emit("update:modelValue", val);
   emit("onChange", val);
@@ -113,14 +118,14 @@ watch(
     </el-button>
     <el-date-picker
       v-model="dateValue"
-      class="ml-1"
+      class="ml-1 !w-[260px]"
       type="daterange"
       unlink-panels
       range-separator="至"
       start-placeholder="开始日期"
       end-placeholder="结束日期"
       v-bind="attrs"
-      @change="handleChange"
+      @change="changeDate"
     />
   </div>
 </template>
