@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useAttrs, computed, ref } from "vue";
+import { useAttrs, computed, ref, watch } from "vue";
 
 defineOptions({
   name: "ReNumberRange"
@@ -13,6 +13,17 @@ const value = defineModel("modelValue", { default: [] });
 
 const min = ref(value.value[0]);
 const max = ref(value.value[1]);
+
+watch(
+  () => value.value,
+  newValue => {
+    // 监听若清空当前输入值，则大小值重置为null
+    if (!newValue) {
+      min.value = null;
+      max.value = null;
+    }
+  }
+);
 
 const options = [
   {
@@ -83,7 +94,7 @@ const changeType = (v: string) => {
       <el-input-number
         v-bind="attrs"
         v-model="min"
-        style="width: 120px"
+        style="width: 100px"
         :controls="false"
         placeholder="最小值"
         @change="changeMin"
@@ -93,6 +104,7 @@ const changeType = (v: string) => {
     <div class="w-[205px] flex">
       <el-input-number
         v-model="max"
+        style="width: 100px"
         class="re-number-range-max"
         :placeholder="maxPlaceholder"
         :controls="false"

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import { debouncedWatch } from "@vueuse/core";
 import SearchTools from "@/components/SearchTools/index.vue";
 import ReNumberRange from "@/components/ReNumberRange";
@@ -20,10 +20,6 @@ const resetForm = () => {
   formRef.value.resetFields();
   for (const key in params) {
     params[key] = null;
-    // 如果 key 包含 '_range'表示取值范围，则将 params[key] 默认设置为 'gt'
-    if (key.includes("_range")) {
-      params[key] = "gt";
-    }
   }
   // emit("change", params);
 };
@@ -45,22 +41,55 @@ const handleSelectLabel = (item: SearchForm.FormCondition) => {
 };
 // 比对值框折叠展示处理
 const handleCompareLabel = (item: SearchForm.FormCondition) => {
-  const [max, min, type] = item.prop;
-  const compareTypeValue = params[type];
-  if (!params[max]) {
+  const value = params[item.prop];
+  if (!value || value.length === 0) {
     return "全部";
   }
+  const [min, max] = value;
+  const compareTypeValue = params[item.operatorProp];
   if (compareTypeValue === "gt" || compareTypeValue === undefined) {
-    return `> ${params[max]}`;
+    return `> ${min}`;
   } else if (compareTypeValue === "lt") {
-    return `< ${params[max]}`;
+    return `< ${max}`;
   } else if (compareTypeValue === "eq") {
-    return `= ${params[max]}`;
+    return `= ${min}`;
   } else if (compareTypeValue === "range") {
-    return `${params[min]}~${params[max]}`;
+    return `${min}~${max}`;
   }
   return "--";
 };
+
+const changeNumberRange = (
+  item: { type: string; value: [] },
+  operatorProp: string
+) => {
+  params[operatorProp] = item.type;
+};
+
+// 设置各个搜索组件的初始值
+const configParams = (configs: SearchForm.FormCondition[]) => {
+  if (Array.isArray(configs)) {
+    configs.forEach(config => {
+      const propType = typeof config.prop;
+      if (propType === "string") {
+        params[config.prop] = config.defaultValue
+          ? config.defaultValue
+          : config.defaultValue === null
+            ? null
+            : "";
+        // 日期时间控件，暂时不需要
+        // if (config.itemType === 'daterange' || config.itemType === 'datetimerange') {
+        //   params[config.propLabel[0]] = config.defaultValue ? config.defaultValue[0] : ''
+        //   params[config.propLabel[1]] = config.defaultValue ? config.defaultValue[1] : ''
+        // }
+      }
+    });
+  }
+};
+
+onMounted(() => {
+  configParams(props.formOpt.conditions);
+});
 </script>
 
 <template>
@@ -72,7 +101,7 @@ const handleCompareLabel = (item: SearchForm.FormCondition) => {
           <div
             v-for="(item, index) in formOpt.conditions"
             :key="index"
-            class="mr-3 px-4 py-1 inline-block border rounded-full bg-[#eef5fe] border-[#589ef8] text-[#589ef8]"
+            class="mr-3 mt-2 px-4 py-1 inline-block border rounded-full bg-[#eef5fe] border-[#589ef8] text-[#589ef8]"
           >
             <!-- 普通输入框 -->
             <span
@@ -161,12 +190,10 @@ const handleCompareLabel = (item: SearchForm.FormCondition) => {
               <!-- 对比数值框 -->
               <re-number-range
                 v-else-if="condition.itemType === 'compareInput'"
-                v-model="params[condition.prop[0]]"
-                v-model:max="params[condition.prop[0]]"
-                v-model:min="params[condition.prop[1]]"
-                v-model:type="params[condition.prop[2]]"
+                v-model="params[condition.prop]"
                 :placeholder="condition.placeholder || '请输入'"
                 clearable
+                @change="changeNumberRange($event, condition.operatorProp)"
               />
               <!-- 可在此定义其他通用查询组件 -->
               <!-- 自定义组件 -->
