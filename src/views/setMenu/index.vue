@@ -78,7 +78,8 @@ const formOpt = reactive<SearchForm.FormOpt>({
     },
     {
       label: "范围",
-      prop: ["fanwei_min", "fanwei_max", "fanwei_range"],
+      prop: "fanwei",
+      operatorProp: "fanwei_operator",
       itemType: "compareInput",
       lg: 6,
       xl: 4,

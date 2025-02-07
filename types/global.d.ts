@@ -203,6 +203,7 @@ declare namespace SearchForm {
     itemType?: string;
     prop: any;
     props?: formData;
+    operatorProp?: string; // 运算操作符，比对输入框时需要该值进行判断
     label?: string;
     placeholder?: any;
     autoVisible?: boolean;
