@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import { debouncedWatch } from "@vueuse/core";
 import SearchTools from "@/components/SearchTools/index.vue";
 import ReNumberRange from "@/components/ReNumberRange";
@@ -42,7 +42,7 @@ const handleSelectLabel = (item: SearchForm.FormCondition) => {
 // 比对值框折叠展示处理
 const handleCompareLabel = (item: SearchForm.FormCondition) => {
   const value = params[item.prop];
-  if (!value) {
+  if (!value || value.length === 0) {
     return "全部";
   }
   const [min, max] = value;
@@ -65,6 +65,31 @@ const changeNumberRange = (
 ) => {
   params[operatorProp] = item.type;
 };
+
+// 设置各个搜索组件的初始值
+const configParams = (configs: SearchForm.FormCondition[]) => {
+  if (Array.isArray(configs)) {
+    configs.forEach(config => {
+      const propType = typeof config.prop;
+      if (propType === "string") {
+        params[config.prop] = config.defaultValue
+          ? config.defaultValue
+          : config.defaultValue === null
+            ? null
+            : "";
+        // 日期时间控件，暂时不需要
+        // if (config.itemType === 'daterange' || config.itemType === 'datetimerange') {
+        //   params[config.propLabel[0]] = config.defaultValue ? config.defaultValue[0] : ''
+        //   params[config.propLabel[1]] = config.defaultValue ? config.defaultValue[1] : ''
+        // }
+      }
+    });
+  }
+};
+
+onMounted(() => {
+  configParams(props.formOpt.conditions);
+});
 </script>
 
 <template>
@@ -76,7 +101,7 @@ const changeNumberRange = (
           <div
             v-for="(item, index) in formOpt.conditions"
             :key="index"
-            class="mr-3 px-4 py-1 inline-block border rounded-full bg-[#eef5fe] border-[#589ef8] text-[#589ef8]"
+            class="mr-3 mt-2 px-4 py-1 inline-block border rounded-full bg-[#eef5fe] border-[#589ef8] text-[#589ef8]"
           >
             <!-- 普通输入框 -->
             <span
