@@ -9,7 +9,7 @@
           <slot name="expand" />
         </div>
       </div>
-      <div class="flex-none pl-2 flex">
+      <div class="flex-none pl-2 ml-4 flex">
         <IconifyIconOffline
           class="text-[28px] pr-2 cursor-pointer hover:text-primary"
           :icon="BrushLine"
