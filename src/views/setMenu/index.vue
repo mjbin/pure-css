@@ -4,6 +4,7 @@ import ReSearchForm from "@/components/ReSearchForm";
 import { useColumns } from "./columns";
 import { SearchForm } from "types/global";
 import { Download } from "@element-plus/icons-vue";
+import { useSetMenu } from "./hook";
 
 defineOptions({
   name: "SetMenu"
@@ -202,12 +203,20 @@ const handleSearch = (form: SearchForm.formData) => {
   console.log("search", form);
 };
 
+const { openDialog } = useSetMenu();
+
 const openAddDialog = () => {
-  console.log("openAddDialog");
+  openDialog();
 };
 
 const viewDetail = item => {
   console.log(item);
+  openDialog("查看", {
+    id: "1",
+    name: "1",
+    code: "2",
+    status: "3"
+  });
 };
 </script>
 
