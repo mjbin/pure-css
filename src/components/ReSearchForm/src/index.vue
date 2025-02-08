@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref } from "vue";
+import dayjs from "dayjs";
 import { debouncedWatch } from "@vueuse/core";
 import SearchTools from "@/components/SearchTools/index.vue";
 import ReNumberRange from "@/components/ReNumberRange";
@@ -34,6 +35,73 @@ debouncedWatch(
     debounce: 300 // 防抖时间为 500 毫秒
   }
 );
+// 日期筛选器快捷选项
+function formatShortCuts(startInit: string, endInit: string) {
+  const today = dayjs();
+  return [
+    {
+      text: "昨天",
+      value: () => {
+        return [
+          today.subtract(1, "d").format(startInit),
+          today.subtract(1, "d").format(endInit)
+        ];
+      }
+    },
+    {
+      text: "当天",
+      value: () => {
+        return [today.format(startInit), today.format(endInit)];
+      }
+    },
+    {
+      text: "当月",
+      value: () => {
+        return [
+          today.startOf("month").format(startInit),
+          today.format(endInit)
+        ];
+      }
+    },
+    {
+      text: "最近一周",
+      value: () => {
+        return [
+          today.subtract(1, "w").format(startInit),
+          today.format(endInit)
+        ];
+      }
+    },
+    {
+      text: "最近一个月",
+      value: () => {
+        return [
+          today.subtract(1, "M").format(startInit),
+          today.format(endInit)
+        ];
+      }
+    }
+  ];
+}
+
+const defaultTime: [Date, Date] = [
+  new Date(2000, 1, 1, 0, 0, 0),
+  new Date(2000, 2, 1, 23, 59, 59)
+];
+// 日期时间选择器处理
+const handleDate = (e: string[], condition: SearchForm.FormCondition) => {
+  if (!condition.propLabel) {
+    return;
+  }
+  if (e) {
+    params[condition.propLabel[0]] = e[0];
+    params[condition.propLabel[1]] = e[1];
+  } else {
+    params[condition.propLabel[0]] = null;
+    params[condition.propLabel[1]] = null;
+  }
+};
+
 // 筛选框折叠展示处理
 const handleSelectLabel = (item: SearchForm.FormCondition) => {
   const findItem = item.options.find(sub => sub.id === params[item.prop]);
@@ -58,6 +126,14 @@ const handleCompareLabel = (item: SearchForm.FormCondition) => {
   }
   return "--";
 };
+// 日期时间范围框折叠展示处理
+const handleDateTimeLable = (item: SearchForm.FormCondition) => {
+  const value = params[item.prop];
+  if (value?.length) {
+    return value.join(" ~ ");
+  }
+  return "全部";
+};
 
 const changeNumberRange = (
   item: { type: string; value: [] },
@@ -77,11 +153,18 @@ const configParams = (configs: SearchForm.FormCondition[]) => {
           : config.defaultValue === null
             ? null
             : "";
-        // 日期时间控件，暂时不需要
-        // if (config.itemType === 'daterange' || config.itemType === 'datetimerange') {
-        //   params[config.propLabel[0]] = config.defaultValue ? config.defaultValue[0] : ''
-        //   params[config.propLabel[1]] = config.defaultValue ? config.defaultValue[1] : ''
-        // }
+        // 日期时间控件的默认值设置
+        if (
+          config.itemType === "daterange" ||
+          config.itemType === "datetimerange"
+        ) {
+          params[config.propLabel[0]] = config.defaultValue
+            ? config.defaultValue[0]
+            : "";
+          params[config.propLabel[1]] = config.defaultValue
+            ? config.defaultValue[1]
+            : "";
+        }
       }
     });
   }
@@ -115,6 +198,14 @@ onMounted(() => {
             <!-- 对比数值框 -->
             <span v-else-if="item.itemType === 'compareInput'"
               >{{ item["label"] }}:{{ handleCompareLabel(item) }}</span
+            >
+            <!-- 日期时间范围框 -->
+            <span
+              v-else-if="
+                item.itemType === 'daterange' ||
+                item.itemType === 'datetimerange'
+              "
+              >{{ item["label"] }}:{{ handleDateTimeLable(item) }}</span
             >
             <!-- 可在此定义其他通用折叠查询组件 -->
           </div>
@@ -194,6 +285,67 @@ onMounted(() => {
                 :placeholder="condition.placeholder || '请输入'"
                 clearable
                 @change="changeNumberRange($event, condition.operatorProp)"
+              />
+              <!-- 日期时间控件 -->
+              <!-- <el-date-picker
+                v-else-if="condition.itemType === 'datetime'"
+                v-model="params[condition.prop]"
+                type="datetime"
+                value-format="YYYY-MM-DD HH:mm:ss"
+                :placeholder="condition.placeholder || '请选择'"
+              /> -->
+              <!-- 日期范围控件 -->
+              <el-date-picker
+                v-else-if="condition.itemType === 'daterange'"
+                v-model="params[condition.prop]"
+                :unlink-panels="true"
+                style="width: 100%"
+                value-format="YYYY-MM-DD"
+                :shortcuts="formatShortCuts('YYYY-MM-DD', 'YYYY-MM-DD')"
+                type="daterange"
+                :clearable="
+                  condition.hasOwnProperty('clearable')
+                    ? condition.clearable
+                    : true
+                "
+                range-separator="-"
+                :start-placeholder="
+                  (condition.placeholder && condition.placeholder[0]) ||
+                  '请选择'
+                "
+                :end-placeholder="
+                  (condition.placeholder && condition.placeholder[1]) ||
+                  '请选择'
+                "
+                @change="handleDate(params[condition.prop], condition)"
+              />
+              <!-- 日期时间范围控件 -->
+              <el-date-picker
+                v-else-if="condition.itemType === 'datetimerange'"
+                v-model="params[condition.prop]"
+                :unlink-panels="true"
+                style="width: 100%"
+                :default-time="defaultTime"
+                value-format="YYYY-MM-DD HH:mm:ss"
+                :shortcuts="
+                  formatShortCuts('YYYY-MM-DD 00:00:00', 'YYYY-MM-DD 23:59:59')
+                "
+                type="datetimerange"
+                :clearable="
+                  condition.hasOwnProperty('clearable')
+                    ? condition.clearable
+                    : true
+                "
+                range-separator="-"
+                :start-placeholder="
+                  (condition.placeholder && condition.placeholder[0]) ||
+                  '请选择'
+                "
+                :end-placeholder="
+                  (condition.placeholder && condition.placeholder[1]) ||
+                  '请选择'
+                "
+                @change="handleDate(params[condition.prop], condition)"
               />
               <!-- 可在此定义其他通用查询组件 -->
               <!-- 自定义组件 -->
