@@ -43,14 +43,15 @@ const validatePhone = (
   callback: Function
 ) => {
   const required = typeof rule.required !== "undefined" ? rule.required : false;
-  const reg =
-    /^([1]\d{10}|([\(（]?0[0-9]{2,3}[）\)]?[-]?)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?)$/;
+  // const reg =
+  //   /^([1]\d{10}|([\(（]?0[0-9]{2,3}[）\)]?[-]?)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?)$/;
+  const reg = /^([1]\d{10})$/;
   if (required) {
     if (_.isEmpty(value)) {
       return callback(new Error("请输入"));
     }
     if (!reg.test(value)) {
-      return callback(new Error("请输入有效的号码"));
+      return callback(new Error("请输入11位有效的手机号"));
     }
     callback();
   } else {
@@ -58,7 +59,7 @@ const validatePhone = (
       callback();
     } else {
       if (!reg.test(value)) {
-        return callback(new Error("请输入有效的号码"));
+        return callback(new Error("请输入11位有效的手机号"));
       }
       callback();
     }
@@ -81,14 +82,24 @@ const validateAccount = (
   callback();
 };
 
-// 账号密码校验
-const validatePwd = (rule: FormItemRule, value: string, callback: Function) => {
-  const reg = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/;
+/**
+ * 密码校验
+ * prevPwd: 表单中的旧密码
+ */
+const validatePwd = (
+  rule: FormItemRule & { prevPwd: string | undefined },
+  value: string,
+  callback: Function
+) => {
+  const reg = /^(?=.*[a-zA-Z])(?=.*\d).{6,}$/;
   if (_.isEmpty(value)) {
     return callback(new Error("请输入"));
   }
+  if (rule.prevPwd && value === rule.prevPwd) {
+    return callback(new Error("新密码不能与旧密码相同"));
+  }
   if (!reg.test(value)) {
-    return callback(new Error("请输入有效的密码（字母+数字组合，至少8位）"));
+    return callback(new Error("请输入有效的密码（字母+数字组合，至少6位）"));
   }
   callback();
 };
@@ -156,15 +167,6 @@ const rules = {
     }
   ],
   select: [{ required: true, message: "请选择", trigger: "change" }],
-  // 密码校验
-  validPwd: [
-    {
-      required: true,
-      trigger: "change",
-      message: "请输入有效的密码（字母+数字组合，至少8位）",
-      validator: validatePwd
-    }
-  ],
   // 账号校验
   validateAccount: [
     { required: true, validator: validateAccount, trigger: "change" }
@@ -182,6 +184,10 @@ const rules = {
   // 手机号校验
   validatePhone: (isRequired = true) => [
     { required: isRequired, validator: validatePhone, trigger: "change" }
+  ],
+  // 密码校验
+  validPwd: (prevPwd: string | undefined) => [
+    { required: true, validator: validatePwd, trigger: "change", prevPwd }
   ],
   // 二次密码校验
   validConfirmPwd: (prevPwd: string | undefined) => [

@@ -12,6 +12,7 @@ import LaySidebarTopCollapse from "../lay-sidebar/components/SidebarTopCollapse.
 
 import LogoutCircleRLine from "@iconify-icons/ri/logout-circle-r-line";
 import RefreshRight from "@iconify-icons/ep/refresh-right";
+import User from "@iconify-icons/ep/user";
 import Setting from "@iconify-icons/ri/settings-3-line";
 
 const { route, router } = useTags();
@@ -76,12 +77,17 @@ const {
           <p v-if="username" class="dark:text-white">{{ username }}</p>
         </span>
         <template #dropdown>
+          <el-dropdown-item @click="router.push({ name: 'UserInfo' })">
+            <IconifyIconOffline :icon="User" class="mr-[5px]" />
+            基本资料
+          </el-dropdown-item>
+          <el-dropdown-item @click="router.push({ name: 'UpdatePwd' })">
+            <IconifyIconOffline :icon="Setting" class="mr-[5px]" />
+            修改密码
+          </el-dropdown-item>
           <el-dropdown-menu class="logout">
             <el-dropdown-item @click="logout">
-              <IconifyIconOffline
-                :icon="LogoutCircleRLine"
-                style="margin: 5px"
-              />
+              <IconifyIconOffline :icon="LogoutCircleRLine" class="mr-[5px]" />
               退出系统
             </el-dropdown-item>
           </el-dropdown-menu>
@@ -105,13 +111,13 @@ const {
   overflow: hidden;
 
   .hamburger-container {
-    float: left;
-    height: 100%;
-    line-height: 48px;
-    cursor: pointer;
     display: flex;
     align-items: center;
+    float: left;
+    height: 100%;
     padding: 0 10px;
+    line-height: 48px;
+    cursor: pointer;
   }
 
   .vertical-header-right {
