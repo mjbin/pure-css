@@ -186,9 +186,13 @@ onMounted(() => {
             :key="index"
             class="mr-3 mt-2 px-4 py-1 inline-block border rounded-full bg-[#eef5fe] border-[#589ef8] text-[#589ef8]"
           >
-            <!-- 普通输入框 -->
+            <!-- 普通输入框 / 单个日期框 -->
             <span
-              v-if="item.itemType === 'input' || item.itemType === undefined"
+              v-if="
+                item.itemType === 'input' ||
+                item.itemType === 'date' ||
+                item.itemType === undefined
+              "
               >{{ item["label"] }}:{{ params[item["prop"]] || "全部" }}</span
             >
             <!-- 筛选框 -->
@@ -199,7 +203,7 @@ onMounted(() => {
             <span v-else-if="item.itemType === 'compareInput'"
               >{{ item["label"] }}:{{ handleCompareLabel(item) }}</span
             >
-            <!-- 日期时间范围框 -->
+            <!-- 日期/时间范围框 -->
             <span
               v-else-if="
                 item.itemType === 'daterange' ||
@@ -286,14 +290,14 @@ onMounted(() => {
                 clearable
                 @change="changeNumberRange($event, condition.operatorProp)"
               />
-              <!-- 日期时间控件 -->
-              <!-- <el-date-picker
-                v-else-if="condition.itemType === 'datetime'"
+              <!-- 日期控件 -->
+              <el-date-picker
+                v-else-if="condition.itemType === 'date'"
                 v-model="params[condition.prop]"
-                type="datetime"
-                value-format="YYYY-MM-DD HH:mm:ss"
+                type="date"
+                value-format="YYYY-MM-DD"
                 :placeholder="condition.placeholder || '请选择'"
-              /> -->
+              />
               <!-- 日期范围控件 -->
               <el-date-picker
                 v-else-if="condition.itemType === 'daterange'"

@@ -189,6 +189,17 @@ const formOpt = ref<SearchForm.FormOpt>({
     },
     // 展示示例，后续删除
     {
+      label: "日期",
+      prop: "date",
+      lg: 6,
+      xl: 4,
+      placeholder: "请选择日期",
+      autoVisible: true,
+      clearable: true,
+      itemType: "date",
+      defaultValue: ""
+    },
+    {
       label: "日期范围",
       prop: "dateRange",
       lg: 6,
