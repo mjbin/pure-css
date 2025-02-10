@@ -5,6 +5,7 @@ import { debouncedWatch } from "@vueuse/core";
 import SearchTools from "@/components/SearchTools/index.vue";
 import ReNumberRange from "@/components/ReNumberRange";
 import { SearchForm } from "types/global";
+import { config } from "localforage";
 
 const emit = defineEmits(["change"]);
 const formRef = ref();
@@ -22,6 +23,12 @@ const resetForm = () => {
   for (const key in params) {
     params[key] = null;
   }
+  // 如果不可修改，不重新赋值为原来的默认值
+  props.formOpt.conditions?.forEach(config => {
+    if (config.disabled) {
+      params[config.prop] = config.defaultValue;
+    }
+  });
   // emit("change", params);
 };
 
@@ -249,6 +256,7 @@ onMounted(() => {
                 "
                 v-model="params[condition.prop]"
                 :placeholder="condition.placeholder || '全部'"
+                :disabled="condition.disabled"
                 clearable
               />
               <!-- 筛选框 -->

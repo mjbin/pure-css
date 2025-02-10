@@ -209,6 +209,7 @@ declare namespace SearchForm {
     autoVisible?: boolean;
     defaultValue?: string | string[] | number[] | null;
     clearable?: boolean;
+    disabled?: boolean;
     sm?: number;
     md?: number;
     lg?: number;

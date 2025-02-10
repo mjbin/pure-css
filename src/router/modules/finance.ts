@@ -24,7 +24,7 @@ export default {
     },
     {
       path: "/finance/orderInfo",
-      name: "CapitalFlow",
+      name: "OrderInfo",
       component: () => import("@/views/finance/orderInfo/index.vue"),
       meta: {
         title: "订单明细"
