@@ -4,8 +4,8 @@ import dayjs from "dayjs";
 import { debouncedWatch } from "@vueuse/core";
 import SearchTools from "@/components/SearchTools/index.vue";
 import ReNumberRange from "@/components/ReNumberRange";
+import ReDateRange from "@/components/ReDateRange";
 import { SearchForm } from "types/global";
-import { config } from "localforage";
 
 const emit = defineEmits(["change"]);
 const formRef = ref();
@@ -214,7 +214,8 @@ onMounted(() => {
             <span
               v-else-if="
                 item.itemType === 'daterange' ||
-                item.itemType === 'datetimerange'
+                item.itemType === 'datetimerange' ||
+                item.itemType === 'customDate'
               "
               >{{ item["label"] }}:{{ handleDateTimeLable(item) }}</span
             >
@@ -358,6 +359,20 @@ onMounted(() => {
                   '请选择'
                 "
                 @change="handleDate(params[condition.prop], condition)"
+              />
+              <re-date-range
+                v-else-if="condition.itemType === 'customDate'"
+                v-model="params[condition.prop]"
+                defaultDateBtn="全部"
+                :btnOptions="[
+                  '全部',
+                  '今日',
+                  '昨日',
+                  '本周',
+                  '上周',
+                  '本月',
+                  '上月'
+                ]"
               />
               <!-- 可在此定义其他通用查询组件 -->
               <!-- 自定义组件 -->

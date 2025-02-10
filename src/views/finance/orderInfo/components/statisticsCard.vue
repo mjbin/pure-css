@@ -30,8 +30,8 @@ const cardMap = [
     <re-col
       v-for="(item, index) in cardMap"
       :key="index"
-      :md="12"
-      :sm="12"
+      :md="24"
+      :sm="24"
       :xs="24"
       :value="12"
     >
