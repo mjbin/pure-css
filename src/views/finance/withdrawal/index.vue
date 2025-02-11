@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import ReSearchForm from "@/components/ReSearchForm";
+import notice from "./components/notice.vue";
+import statisticsCard from "./components/statisticsCard.vue";
 import { useHooks } from "./hook";
 import { SearchForm } from "types/global";
 import { Download } from "@element-plus/icons-vue";
@@ -113,6 +115,8 @@ const viewDetail = item => {
 
 <template>
   <div>
+    <notice />
+    <statisticsCard />
     <ReSearchForm :form-opt="formOpt" @change="handleSearch" />
     <el-card shadow="never" class="mt-4">
       <div class="mb-4">

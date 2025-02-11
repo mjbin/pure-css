@@ -186,43 +186,43 @@ const formOpt = ref<SearchForm.FormOpt>({
       xl: 4,
       defaultValue: "",
       autoVisible: true
-    },
-    // 展示示例，后续删除
-    {
-      label: "日期",
-      prop: "date",
-      lg: 6,
-      xl: 4,
-      placeholder: "请选择日期",
-      autoVisible: true,
-      clearable: true,
-      itemType: "date",
-      defaultValue: ""
-    },
-    {
-      label: "日期范围",
-      prop: "dateRange",
-      lg: 6,
-      xl: 5,
-      propLabel: ["startDate", "endDate"],
-      placeholder: ["开始日期", "结束日期"],
-      autoVisible: true,
-      clearable: true,
-      itemType: "daterange",
-      defaultValue: []
-    },
-    {
-      label: "时间范围",
-      prop: "datetimeRange",
-      lg: 8,
-      xl: 7,
-      propLabel: ["startTime", "endTime"],
-      placeholder: ["开始时间", "结束时间"],
-      autoVisible: true,
-      clearable: true,
-      itemType: "datetimerange",
-      defaultValue: []
     }
+    // 展示示例，后续删除
+    // {
+    //   label: "日期",
+    //   prop: "date",
+    //   lg: 6,
+    //   xl: 4,
+    //   placeholder: "请选择日期",
+    //   autoVisible: true,
+    //   clearable: true,
+    //   itemType: "date",
+    //   defaultValue: ""
+    // },
+    // {
+    //   label: "日期范围",
+    //   prop: "dateRange",
+    //   lg: 6,
+    //   xl: 5,
+    //   propLabel: ["startDate", "endDate"],
+    //   placeholder: ["开始日期", "结束日期"],
+    //   autoVisible: true,
+    //   clearable: true,
+    //   itemType: "daterange",
+    //   defaultValue: []
+    // },
+    // {
+    //   label: "时间范围",
+    //   prop: "datetimeRange",
+    //   lg: 8,
+    //   xl: 7,
+    //   propLabel: ["startTime", "endTime"],
+    //   placeholder: ["开始时间", "结束时间"],
+    //   autoVisible: true,
+    //   clearable: true,
+    //   itemType: "datetimerange",
+    //   defaultValue: []
+    // }
   ]
 });
 
