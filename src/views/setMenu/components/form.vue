@@ -109,7 +109,7 @@ defineExpose({ getRef });
     :disabled="!!newFormInline.id"
     label-width="80px"
   >
-    <div class="my-2">
+    <div class="form-header">
       <el-text size="large" type="primary">自定义信息</el-text>
     </div>
     <el-row :gutter="30">
@@ -163,7 +163,7 @@ defineExpose({ getRef });
         type="textarea"
       />
     </el-form-item>
-    <div class="my-2">
+    <div class="form-header">
       <el-text size="large" type="primary">基本信息</el-text>
     </div>
     <PureDescriptions border :columns="columns" :column="2" />

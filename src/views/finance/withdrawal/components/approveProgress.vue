@@ -49,7 +49,7 @@ const columns = [
 
 <template>
   <div>
-    <div class="my-4">
+    <div class="form-header">
       <el-text size="large" type="primary">处理进度</el-text>
     </div>
     <!-- <ReTimeStep :list="list" :current="currentStep"></ReTimeStep> -->
@@ -58,7 +58,7 @@ const columns = [
       <el-step :icon="LocationFilled" description="申请中" />
       <el-step :icon="LocationFilled" description="完成" />
     </el-steps>
-    <div class="my-4">
+    <div class="form-header">
       <el-text size="large" type="primary">申请信息</el-text>
     </div>
     <PureDescriptions :columns="columns" :column="2" />

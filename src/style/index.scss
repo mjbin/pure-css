@@ -35,3 +35,19 @@
 .html-weakness {
   filter: invert(80%);
 }
+
+/* 板块标题样式 */
+.form-header {
+  padding: 6px 0;
+  margin: 8px 0;
+  font-size: 16px;
+  background-color: var(--el-color-primary-light-9);
+  border-radius: 4px;
+
+  &::before {
+    width: 4px;
+    padding-left: 8px;
+    content: "";
+    border-left: 4px solid var(--el-color-primary);
+  }
+}
