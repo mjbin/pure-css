@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, h } from "vue";
 import ReSearchForm from "@/components/ReSearchForm";
 import notice from "./components/notice.vue";
 import statisticsCard from "./components/statisticsCard.vue";
+import { addDialog } from "@/components/ReDialog";
+import approveProgress from "./components/approveProgress.vue";
 import { useHooks } from "./hook";
 import { SearchForm } from "types/global";
 import { Download } from "@element-plus/icons-vue";
@@ -102,12 +104,35 @@ const {
   pagination,
   handleSearch,
   openDialog,
+  openApproveDialog,
   onCurrentChange
 } = useHooks();
 
 const viewDetail = item => {
-  console.log(item);
-  openDialog("查看明细", {
+  addDialog({
+    title: "审批进度",
+    props: {
+      formInline: {
+        id: item?.id ?? ""
+      }
+    },
+    width: "40%",
+    draggable: true,
+    fullscreenIcon: false,
+    hideFooter: true,
+    closeOnClickModal: true,
+    contentRenderer: () => h(approveProgress)
+  });
+};
+
+const handleApply = () => {
+  openDialog("提现申请", {
+    id: "123"
+  });
+};
+
+const handleRecord = () => {
+  openApproveDialog({
     id: "123"
   });
 };
@@ -116,7 +141,7 @@ const viewDetail = item => {
 <template>
   <div>
     <notice />
-    <statisticsCard />
+    <statisticsCard @handle-apply="handleApply" @handle-record="handleRecord" />
     <ReSearchForm :form-opt="formOpt" @change="handleSearch" />
     <el-card shadow="never" class="mt-4">
       <div class="mb-4">

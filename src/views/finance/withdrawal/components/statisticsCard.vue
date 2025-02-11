@@ -1,6 +1,10 @@
 <script setup lang="ts">
 // import { ref } from "vue";
 import ReCol from "@/components/ReCol";
+const emit = defineEmits<{
+  (e: "handleApply"): void;
+  (e: "handleRecord"): void;
+}>();
 </script>
 <template>
   <el-card class="mb-4">
@@ -27,7 +31,12 @@ import ReCol from "@/components/ReCol";
               <span>¥ 666</span>
             </div>
           </div>
-          <el-button class="ml-2 mb-1" type="primary" plain round
+          <el-button
+            class="ml-2 mb-1"
+            type="primary"
+            plain
+            round
+            @click="emit('handleApply')"
             >申请提现</el-button
           >
         </div>
@@ -42,7 +51,12 @@ import ReCol from "@/components/ReCol";
               <span>¥ 888</span>
             </div>
           </div>
-          <el-button class="ml-2 mb-1" type="primary" plain round
+          <el-button
+            class="ml-2 mb-1"
+            type="primary"
+            plain
+            round
+            @click="emit('handleRecord')"
             >查看记录</el-button
           >
         </div>

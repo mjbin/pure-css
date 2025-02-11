@@ -1,7 +1,8 @@
 import { delay } from "@pureadmin/utils";
-import { ref, onMounted, reactive } from "vue";
+import { ref, onMounted, reactive, h } from "vue";
 import type { PaginationProps } from "@pureadmin/table";
-// import detailForm from "./components/form.vue";
+import applyForm from "./components/applyForm.vue";
+import approveDialog from "./components/approveDialog.vue";
 import { addDialog } from "@/components/ReDialog";
 import { deviceDetection } from "@pureadmin/utils";
 import type { SearchForm } from "types/global";
@@ -111,8 +112,9 @@ export function useHooks() {
       loading.value = false;
     });
   };
+  const formRef = ref();
 
-  function openDialog(title = "查看明细", row?: any) {
+  function openDialog(title = "提现申请", row?: any) {
     addDialog({
       title,
       props: {
@@ -124,9 +126,48 @@ export function useHooks() {
       draggable: true,
       fullscreen: deviceDetection(),
       fullscreenIcon: true,
+      closeOnClickModal: false,
+      contentRenderer: () => h(applyForm, { ref: formRef, formInline: null }),
+      beforeSure: (done, { options }) => {
+        const FormRef = formRef.value.getRef();
+        const curData = options.props.formInline as any;
+        function chores() {
+          console.log("curData", curData);
+          done(); // 关闭弹框
+          // onSearch(); // 刷新表格数据
+        }
+        FormRef.validate(valid => {
+          if (valid) {
+            console.log("curData", curData);
+            // 表单规则校验通过
+            if (title === "新增") {
+              // 实际开发先调用新增接口，再进行下面操作
+              chores();
+            } else {
+              // 实际开发先调用修改接口，再进行下面操作
+              chores();
+            }
+          }
+        });
+      }
+    });
+  }
+
+  function openApproveDialog(row?: any) {
+    addDialog({
+      title: "正在审批",
+      props: {
+        formInline: {
+          id: row?.id ?? ""
+        }
+      },
+      width: "50%",
+      draggable: true,
+      fullscreen: deviceDetection(),
+      fullscreenIcon: true,
       hideFooter: true,
       closeOnClickModal: false,
-      contentRenderer: () => <p>弹框内容</p>
+      contentRenderer: () => h(approveDialog)
     });
   }
 
@@ -145,6 +186,7 @@ export function useHooks() {
     handleSearch,
     fetchList,
     openDialog,
+    openApproveDialog,
     onCurrentChange
   };
 }
