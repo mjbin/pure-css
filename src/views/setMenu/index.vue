@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import ReSearchForm from "@/components/ReSearchForm";
-import { useColumns } from "./columns";
 import { SearchForm } from "types/global";
 import { Download } from "@element-plus/icons-vue";
-import { useSetMenu } from "./hook";
+import { useHooks } from "./hook";
 
 defineOptions({
   name: "SetMenu"
@@ -226,23 +225,19 @@ const formOpt = ref<SearchForm.FormOpt>({
   ]
 });
 
-const { loading, columns, dataList, pagination, onCurrentChange } = useColumns(
-  []
-);
-
+const {
+  loading,
+  columns,
+  dataList,
+  pagination,
+  handleSearch,
+  onCurrentChange,
+  onSizeChange,
+  openDialog
+} = useHooks();
 const multipleSelection = ref([]);
 const handleSelectionChange = val => {
   multipleSelection.value = val;
-};
-
-const handleSearch = (form: SearchForm.formData) => {
-  console.log("search", form);
-};
-
-const { openDialog } = useSetMenu();
-
-const openAddDialog = () => {
-  openDialog();
 };
 
 const viewDetail = item => {
@@ -262,7 +257,7 @@ const viewDetail = item => {
     <el-card shadow="never" class="mt-4">
       <div class="mb-4">
         <el-button type="primary" :icon="Download">导出</el-button>
-        <el-button type="primary" @click="openAddDialog">
+        <el-button type="primary" @click="openDialog()">
           自定义套餐信息
         </el-button>
       </div>
@@ -270,6 +265,7 @@ const viewDetail = item => {
         row-key="id"
         alignWhole="center"
         border
+        adaptive
         showOverflowTooltip
         :loading="loading"
         :loading-config="{ background: 'transparent' }"
@@ -282,6 +278,7 @@ const viewDetail = item => {
         :columns="columns"
         :pagination="pagination"
         @page-current-change="onCurrentChange"
+        @page-size-change="onSizeChange"
         @selection-change="handleSelectionChange"
       >
         <template #operation="scope">

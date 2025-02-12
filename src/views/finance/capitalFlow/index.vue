@@ -48,6 +48,7 @@ const {
   pagination,
   handleSearch,
   openDialog,
+  onSizeChange,
   onCurrentChange
 } = useHooks();
 
@@ -70,6 +71,7 @@ const viewDetail = item => {
         row-key="id"
         alignWhole="center"
         border
+        adaptive
         show-summary
         showOverflowTooltip
         :loading="loading"
@@ -83,6 +85,7 @@ const viewDetail = item => {
         :columns="columns"
         :pagination="pagination"
         @page-current-change="onCurrentChange"
+        @page-size-change="onSizeChange"
       >
         <template #operation="scope">
           <el-button

@@ -3,14 +3,69 @@ import { message } from "@/utils/message";
 import { addDialog } from "@/components/ReDialog";
 import { deviceDetection } from "@pureadmin/utils";
 import { reactive, ref, h } from "vue";
+import { useTables } from "@/hooks/useTables";
 
-export function useSetMenu() {
+export function useHooks() {
   const form = reactive({
     name: "",
     code: "",
     status: ""
   });
   const formRef = ref();
+  const {
+    dataList,
+    loading,
+    pagination,
+    handleSearch,
+    onCurrentChange,
+    onSizeChange
+  } = useTables();
+  const columns: TableColumnList = [
+    {
+      type: "selection",
+      align: "left"
+    },
+    {
+      label: "套餐编码",
+      prop: "batchNo",
+      sortable: true
+    },
+    {
+      label: "名称",
+      prop: "cardDate",
+      sortable: true
+    },
+    {
+      label: "所属用户",
+      prop: "cardCount",
+      sortable: true
+    },
+    {
+      label: "副标题",
+      prop: "activateRate",
+      sortable: true
+    },
+    {
+      label: "类型",
+      prop: "activateCount",
+      sortable: true
+    },
+    {
+      label: "类型",
+      prop: "activateCount",
+      sortable: true
+    },
+    {
+      label: "是否热门",
+      prop: "activateCount",
+      sortable: true
+    },
+    {
+      label: "操作",
+      fixed: "right",
+      slot: "operation"
+    }
+  ];
   async function onSearch() {
     // loading.value = true;
     // const { data } = await getRoleList(toRaw(form));
@@ -77,6 +132,13 @@ export function useSetMenu() {
 
   return {
     form,
+    loading,
+    columns,
+    dataList,
+    pagination,
+    handleSearch,
+    onCurrentChange,
+    onSizeChange,
     onSearch,
     resetForm,
     openDialog
