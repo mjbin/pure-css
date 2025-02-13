@@ -1,15 +1,11 @@
-import { delay } from "@pureadmin/utils";
-import { ref, onMounted, reactive, h } from "vue";
-import type { PaginationProps } from "@pureadmin/table";
+import { ref, h } from "vue";
 import applyForm from "./components/applyForm.vue";
 import approveDialog from "./components/approveDialog.vue";
 import { addDialog } from "@/components/ReDialog";
 import { deviceDetection } from "@pureadmin/utils";
-import type { SearchForm } from "types/global";
+import { useTables } from "@/hooks/useTables";
 
 export function useHooks() {
-  const dataList = ref([]);
-  const loading = ref(true);
   const columns: TableColumnList = [
     {
       type: "selection",
@@ -62,56 +58,16 @@ export function useHooks() {
     }
   ];
 
-  /** 分页配置 */
-  const pagination = reactive<PaginationProps>({
-    pageSize: 10,
-    currentPage: 1,
-    pageSizes: [10, 50, 100],
-    total: 0,
-    background: true
-  });
+  const {
+    dataList,
+    loading,
+    pagination,
+    handleSearch,
+    fetchList,
+    onCurrentChange,
+    onSizeChange
+  } = useTables();
 
-  function onCurrentChange(page: number) {
-    fetchList({
-      page
-    });
-  }
-
-  const handleSearch = (form: SearchForm.formData) => {
-    console.log("search", form);
-  };
-
-  const fetchList = filters => {
-    const params = {
-      ...filters
-    };
-    console.log(params);
-
-    // 发起请求
-    loading.value = true;
-    delay(300).then(() => {
-      dataList.value = [
-        {
-          id: "1",
-          batchNo: "123",
-          cardDate: "2024-06-21",
-          cardCount: 3000,
-          activateRate: "10%",
-          activateCount: 300
-        },
-        {
-          id: "2",
-          batchNo: "345",
-          cardDate: "2024-06-21",
-          cardCount: 2000,
-          activateRate: "10%",
-          activateCount: 200
-        }
-      ];
-      pagination.total = dataList.value.length;
-      loading.value = false;
-    });
-  };
   const formRef = ref();
 
   function openDialog(title = "提现申请", row?: any) {
@@ -171,13 +127,6 @@ export function useHooks() {
     });
   }
 
-  onMounted(() => {
-    fetchList({
-      // ...formFilter,
-      page: 1
-    });
-  });
-
   return {
     loading,
     columns,
@@ -187,6 +136,7 @@ export function useHooks() {
     fetchList,
     openDialog,
     openApproveDialog,
+    onSizeChange,
     onCurrentChange
   };
 }

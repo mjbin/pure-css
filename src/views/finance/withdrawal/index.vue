@@ -105,6 +105,7 @@ const {
   handleSearch,
   openDialog,
   openApproveDialog,
+  onSizeChange,
   onCurrentChange
 } = useHooks();
 
@@ -164,6 +165,7 @@ const handleRecord = () => {
         :columns="columns"
         :pagination="pagination"
         @page-current-change="onCurrentChange"
+        @page-size-change="onSizeChange"
       >
         <template #operation="scope">
           <el-button

@@ -176,7 +176,8 @@ const {
   dataList,
   pagination,
   handleSearch,
-  onCurrentChange
+  onCurrentChange,
+  onSizeChange
 } = useHooks();
 </script>
 
@@ -192,6 +193,7 @@ const {
         row-key="id"
         alignWhole="center"
         border
+        adaptive
         showOverflowTooltip
         :loading="loading"
         :loading-config="{ background: 'transparent' }"
@@ -204,6 +206,7 @@ const {
         :columns="columns"
         :pagination="pagination"
         @page-current-change="onCurrentChange"
+        @page-size-change="onSizeChange"
       >
         <template #empty>
           <el-empty description="暂无数据" :image-size="60" />
