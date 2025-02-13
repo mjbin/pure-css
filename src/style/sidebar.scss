@@ -62,12 +62,19 @@
   .fixed-header {
     position: fixed;
     top: 0;
-    right: 0;
+    left: 0;
+
+    // right: 0;
     z-index: 998;
-    width: calc(100% - #{$sideBarWidth});
+    width: 100%;
 
     /* fixed-header 属性左上角动画 */
     transition: width var(--pure-transition-duration);
+
+    // width: calc(100% - #{$sideBarWidth});
+    .tags-view {
+      padding-left: $sideBarWidth;
+    }
   }
 
   .main-hidden {
@@ -84,7 +91,9 @@
 
   .sidebar-container {
     position: fixed;
-    top: 0;
+
+    // top: 0;
+    top: 100px;
     bottom: 0;
     left: 0;
     z-index: 1001;
@@ -551,6 +560,10 @@
     .fixed-header {
       width: 100% !important;
       transition: width var(--pure-transition-duration);
+
+      .tags-view {
+        padding-left: 0 !important;
+      }
     }
 
     .main-container {
@@ -588,8 +601,13 @@ body[layout="vertical"] {
 
   .hideSidebar {
     .fixed-header {
-      width: calc(100% - 54px);
+      // width: calc(100% - 54px);
+      width: 100%;
       transition: width var(--pure-transition-duration);
+
+      .tags-view {
+        padding-left: 54px;
+      }
     }
 
     .sidebar-container {
@@ -643,7 +661,8 @@ body[layout="vertical"] {
   /* 设置 */
   .set-icon {
     &:hover {
-      background: #f6f6f6;
+      // background: #f6f6f6;
+      background: inherit;
     }
   }
 }
@@ -678,7 +697,8 @@ body[layout="mix"] {
 
   .hideSidebar {
     .fixed-header {
-      width: calc(100% - 54px);
+      // width: calc(100% - 54px);
+      width: 100%;
       transition: width var(--pure-transition-duration);
     }
 

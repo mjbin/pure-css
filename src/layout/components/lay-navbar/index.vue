@@ -3,58 +3,57 @@ import { unref } from "vue";
 import { useNav } from "@/layout/hooks/useNav";
 import { useTags } from "../../hooks/useTag";
 import { handleAliveRoute } from "@/router/utils";
-import LaySearch from "../lay-search/index.vue";
-import LayNotice from "../lay-notice/index.vue";
-import LayNavMix from "../lay-sidebar/NavMix.vue";
+// import LaySearch from "../lay-search/index.vue";
+// import LayNotice from "../lay-notice/index.vue";
+// import LayNavMix from "../lay-sidebar/NavMix.vue";
 import LaySidebarFullScreen from "../lay-sidebar/components/SidebarFullScreen.vue";
-import LaySidebarBreadCrumb from "../lay-sidebar/components/SidebarBreadCrumb.vue";
-import LaySidebarTopCollapse from "../lay-sidebar/components/SidebarTopCollapse.vue";
+// import LaySidebarBreadCrumb from "../lay-sidebar/components/SidebarBreadCrumb.vue";
+// import LaySidebarTopCollapse from "../lay-sidebar/components/SidebarTopCollapse.vue";
 
 import LogoutCircleRLine from "@iconify-icons/ri/logout-circle-r-line";
-import RefreshRight from "@iconify-icons/ep/refresh-right";
+// import RefreshRight from "@iconify-icons/ep/refresh-right";
 import User from "@iconify-icons/ep/user";
 import Setting from "@iconify-icons/ri/settings-3-line";
 
 const { route, router } = useTags();
 
-function onFresh() {
-  const { fullPath, query } = unref(route);
-  router.replace({
-    path: "/redirect" + fullPath,
-    query
-  });
-  handleAliveRoute(route as ToRouteType, "refresh");
-}
+// function onFresh() {
+//   const { fullPath, query } = unref(route);
+//   router.replace({
+//     path: "/redirect" + fullPath,
+//     query
+//   });
+//   handleAliveRoute(route as ToRouteType, "refresh");
+// }
 
 const {
   layout,
-  device,
+  // device,
   logout,
-  onPanel,
-  pureApp,
+  // onPanel,
+  // pureApp,
   username,
   userAvatar,
-  avatarsStyle,
-  toggleSideBar
+  avatarsStyle
+  // toggleSideBar
 } = useNav();
 </script>
 
 <template>
-  <div class="navbar bg-[#fff] shadow-sm shadow-[rgba(0,21,41,0.08)]">
-    <LaySidebarTopCollapse
+  <div class="navbar bg-primary shadow-sm shadow-[rgba(0,21,41,0.08)]">
+    <!-- <LaySidebarTopCollapse
       class="hamburger-container"
       :is-active="pureApp.sidebar.opened"
       @toggleClick="toggleSideBar"
     />
 
-    <!-- 重新加载 -->
     <div class="hamburger-container">
       <IconifyIconOffline
         :icon="RefreshRight"
         class="hover:text-primary"
         @click="onFresh"
       />
-    </div>
+    </div> -->
 
     <!-- <LaySidebarBreadCrumb
       v-if="layout !== 'mix' && device !== 'mobile'"
@@ -126,7 +125,8 @@ const {
     justify-content: flex-end;
     min-width: 280px;
     height: 48px;
-    color: #000000d9;
+    // color: #000000d9;
+    color: #fff;
 
     .el-dropdown-link {
       display: flex;
@@ -134,7 +134,7 @@ const {
       justify-content: space-around;
       height: 48px;
       padding: 10px;
-      color: #000000d9;
+      color: #fff;
       cursor: pointer;
 
       p {

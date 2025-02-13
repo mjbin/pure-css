@@ -158,6 +158,8 @@ const LayHeader = defineComponent({
 
 <template>
   <div ref="appWrapperRef" :class="['app-wrapper', set.classes]">
+    <!-- <div style="height: 100px; width: 100%; margin-bottom: 100px;position: fixed;">3444</div> -->
+    <LayHeader />
     <div
       v-show="
         set.device === 'mobile' &&
@@ -180,7 +182,7 @@ const LayHeader = defineComponent({
       ]"
     >
       <div v-if="set.fixedHeader">
-        <LayHeader />
+        <!-- <LayHeader /> -->
         <!-- 主体内容 -->
         <LayContent :fixed-header="set.fixedHeader" />
       </div>

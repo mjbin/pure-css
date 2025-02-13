@@ -10,6 +10,7 @@ import { useSettingStoreHook } from "@/store/modules/settings";
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags";
 import { usePermissionStoreHook } from "@/store/modules/permission";
 import { ref, watch, unref, toRaw, nextTick, onBeforeUnmount } from "vue";
+import RefreshRight from "@iconify-icons/ep/refresh-right";
 import {
   delay,
   isEqual,
@@ -559,6 +560,11 @@ onBeforeUnmount(() => {
 
 <template>
   <div v-if="!showTags" ref="containerDom" class="tags-view">
+    <IconifyIconOffline
+      :icon="RefreshRight"
+      class="text-white text-lg cursor-pointer"
+      @click="onFresh"
+    />
     <span v-show="isShowArrow" class="arrow-left">
       <IconifyIconOffline :icon="ArrowLeftSLine" @click="handleScroll(200)" />
     </span>

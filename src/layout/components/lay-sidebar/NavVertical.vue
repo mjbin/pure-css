@@ -9,6 +9,8 @@ import { usePermissionStoreHook } from "@/store/modules/permission";
 import { ref, computed, watch, onMounted, onBeforeUnmount } from "vue";
 import LaySidebarLogo from "../lay-sidebar/components/SidebarLogo.vue";
 import LaySidebarItem from "../lay-sidebar/components/SidebarItem.vue";
+import MenuFold from "@iconify-icons/ri/menu-fold-fill";
+import MenuUnfold from "@iconify-icons/ri/menu-unfold-fill";
 // import LaySidebarLeftCollapse from "../lay-sidebar/components/SidebarLeftCollapse.vue";
 // import LaySidebarCenterCollapse from "../lay-sidebar/components/SidebarCenterCollapse.vue";
 
@@ -93,6 +95,13 @@ onBeforeUnmount(() => {
     @mouseenter.prevent="isShow = true"
     @mouseleave.prevent="isShow = false"
   >
+    <div :class="isCollapse ? ['text-center'] : ['text-right', 'mr-4']">
+      <IconifyIconOffline
+        :icon="isCollapse ? MenuUnfold : MenuFold"
+        class="inline-block align-middle hover:text-primary dark:hover:!text-white text-lg cursor-pointer"
+        @click="toggleSideBar"
+      />
+    </div>
     <LaySidebarLogo v-if="showLogo" :collapse="isCollapse" />
     <el-scrollbar
       wrap-class="scrollbar-wrapper"

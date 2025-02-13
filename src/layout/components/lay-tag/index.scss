@@ -24,9 +24,12 @@
   align-items: center;
   width: 100%;
   font-size: 14px;
-  color: var(--el-text-color-primary);
-  background: #fff;
-  box-shadow: 0 0 1px #888;
+
+  // color: var(--el-text-color-primary);
+  // background: #fff;
+  background-color: var(--el-color-primary);
+
+  // box-shadow: 0 0 1px #888;
 
   .scroll-item {
     position: relative;
@@ -73,7 +76,9 @@
 
   .tag-title {
     padding: 0 4px;
-    color: var(--el-text-color-primary);
+
+    // color: var(--el-text-color-primary);
+    color: #fff;
     text-decoration: none;
   }
 
@@ -264,11 +269,13 @@
 
 /* 卡片模式下鼠标移出隐藏蓝色边框 */
 .card-out {
-  color: #666;
+  // color: #666;
+  color: #fff;
   border: none;
 
   .tag-title {
-    color: #666;
+    // color: #666;
+    color: #fff;
   }
 }
 
@@ -324,7 +331,9 @@
     right: 7px;
     width: 1px;
     height: 14px;
-    background-color: #2b2d2f;
+    background-color: #acbff0;
+
+    // background-color: #2b2d2f;
   }
 
   &:hover {
@@ -360,7 +369,9 @@
     justify-content: center;
     width: 16px;
     height: 16px;
-    color: #666;
+
+    // color: #666;
+    color: #fff;
     border-radius: 50%;
 
     &:hover {
