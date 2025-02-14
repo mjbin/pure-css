@@ -8,13 +8,14 @@ import type { FormInstance } from "element-plus";
 import { useLayout } from "@/layout/hooks/useLayout";
 import { useUserStoreHook } from "@/store/modules/user";
 import { initRouter, getTopMenu } from "@/router/utils";
-import { bg, avatar, illustration } from "./utils/static";
+// import { bg, avatar, illustration } from "./utils/static";
+import { avatar } from "./utils/static";
 import { useRenderIcon } from "@/components/ReIcon/src/hooks";
-import { ref, reactive, toRaw, onMounted, onBeforeUnmount } from "vue";
+import { ref, reactive, onMounted, onBeforeUnmount } from "vue";
 import { useDataThemeChange } from "@/layout/hooks/useDataThemeChange";
 
-import dayIcon from "@/assets/svg/day.svg?component";
-import darkIcon from "@/assets/svg/dark.svg?component";
+// import dayIcon from "@/assets/svg/day.svg?component";
+// import darkIcon from "@/assets/svg/dark.svg?component";
 import Lock from "@iconify-icons/ri/lock-fill";
 import User from "@iconify-icons/ri/user-3-fill";
 
@@ -79,9 +80,8 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="select-none">
-    <img :src="bg" class="wave" />
+    <!-- <img :src="bg" class="wave" />
     <div class="flex-c absolute right-5 top-3">
-      <!-- 主题 -->
       <el-switch
         v-model="dataTheme"
         inline-prompt
@@ -89,11 +89,11 @@ onBeforeUnmount(() => {
         :inactive-icon="darkIcon"
         @change="dataThemeChange"
       />
-    </div>
+    </div> -->
     <div class="login-container">
-      <div class="img">
+      <!-- <div class="img">
         <component :is="toRaw(illustration)" />
-      </div>
+      </div> -->
       <div class="login-box">
         <div class="login-form">
           <avatar class="avatar" />
@@ -139,9 +139,10 @@ onBeforeUnmount(() => {
               </el-form-item>
             </Motion>
 
-            <Motion :delay="250">
+            <Motion :delay="250" class="text-center">
               <el-button
-                class="w-full mt-4"
+                class="w-[180px] mt-4 m-auto"
+                style="border-radius: 30px"
                 size="default"
                 type="primary"
                 :loading="loading"

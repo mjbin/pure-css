@@ -11,10 +11,13 @@
   width: 100vw;
   height: 100vh;
   max-width: 100%;
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 18rem;
-  padding: 0 2rem;
+  padding: 0 2rem; */
+  display: flex;
+  justify-content: center;
+  background-image: url("../assets/login/bg-new.png");
 }
 
 .img {
@@ -28,10 +31,14 @@
 }
 
 .login-box {
-  display: flex;
+  /* display: flex;
   align-items: center;
   text-align: center;
-  overflow: hidden;
+  overflow: hidden; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%) translateY(-50%);
 }
 
 .login-form {
@@ -46,24 +53,51 @@
 .login-form h2 {
   text-transform: uppercase;
   margin: 15px 0;
-  color: #999;
+  font-size: 20px;
+  /* color: #999;
   font:
     bold 200% Consolas,
     Monaco,
-    monospace;
+    monospace; */
 }
 
-@media screen and (max-width: 1180px) {
+@media screen and (min-width: 1080px) {
+  .login-box {
+    background-image: url("../assets/login/login.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 1000px;
+    height: 500px;
+  }
+  .login-form {
+    width: 270px;
+    height: 100%;
+    position: absolute;
+    left: 600px;
+    top: 40px;
+  }
+}
+
+@media screen and (max-width: 1080px) {
   .login-container {
     grid-gap: 9rem;
   }
+  .login-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
 
   .login-form {
+    position: relative;
     width: 290px;
   }
 
   .login-form h2 {
-    font-size: 2.4rem;
+    /* font-size: 2.4rem; */
+    font-size: 1.8rem;
     margin: 8px 0;
   }
 
