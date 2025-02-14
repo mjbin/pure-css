@@ -48,7 +48,7 @@ const onChange = () => {
           <span
             v-for="(key, index) in filters"
             :key="index"
-            class="mr-3 px-4 py-1 inline-block border rounded-full bg-[#eef5fe] border-[#589ef8] text-[#589ef8]"
+            class="mr-3 px-4 py-1 inline-block border rounded-full bg-[#eef5fe] border-[#2461FF] text-[#2461FF]"
           >
             {{ formLabels[key] }}:{{ form[key] || "全部" }}
           </span>

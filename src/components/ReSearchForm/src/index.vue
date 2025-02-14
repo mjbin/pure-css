@@ -187,11 +187,11 @@ onMounted(() => {
     <template #default>
       <div class="flex items-center text-sm">
         <span class="flex-none">筛选条件：</span>
-        <div class="flex-auto text-[13px]">
+        <div class="flex-auto text-[12px]">
           <div
             v-for="(item, index) in formOpt.conditions"
             :key="index"
-            class="mr-3 mt-2 px-4 py-1 inline-block border rounded-full bg-[#eef5fe] border-[#589ef8] text-[#589ef8]"
+            class="mr-3 mt-2 px-2 py-1 inline-block border rounded-full bg-[#E5EEFD] border-[#2461FF] text-[#2461FF]"
           >
             <!-- 普通输入框 / 单个日期框 -->
             <span
