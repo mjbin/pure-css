@@ -95,7 +95,10 @@ onBeforeUnmount(() => {
     @mouseenter.prevent="isShow = true"
     @mouseleave.prevent="isShow = false"
   >
-    <div :class="isCollapse ? ['text-center'] : ['text-right', 'mr-4']">
+    <div
+      class="menu-fold"
+      :class="isCollapse ? ['text-center'] : ['text-right', 'pr-4']"
+    >
       <IconifyIconOffline
         :icon="isCollapse ? MenuUnfold : MenuFold"
         class="inline-block align-middle hover:text-primary dark:hover:!text-white text-lg cursor-pointer"

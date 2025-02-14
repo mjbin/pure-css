@@ -66,7 +66,7 @@ const {
       <!-- 菜单搜索 -->
       <!-- <LaySearch id="header-search" /> -->
       <!-- 全屏 -->
-      <LaySidebarFullScreen id="full-screen" />
+      <!-- <LaySidebarFullScreen id="full-screen" /> -->
       <!-- 消息通知 -->
       <!-- <LayNotice id="header-notice" /> -->
       <!-- 退出登录 -->
@@ -92,6 +92,7 @@ const {
           </el-dropdown-menu>
         </template>
       </el-dropdown>
+      <LaySidebarFullScreen id="full-screen" />
       <!-- <span
         class="set-icon navbar-bg-hover"
         title="打开系统配置"
@@ -132,10 +133,13 @@ const {
       display: flex;
       align-items: center;
       justify-content: space-around;
-      height: 48px;
-      padding: 10px;
-      color: #fff;
+      padding: 2px 8px;
+      // height: 48px;
+      // padding: 10px;
+      color: var(--el-color-primary);
       cursor: pointer;
+      background: #fff;
+      border-radius: 30px;
 
       p {
         font-size: 14px;
