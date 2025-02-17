@@ -12,24 +12,10 @@ const activeName = ref("commission");
 <template>
   <div>
     <el-row :gutter="20">
-      <el-col :xs="24" :sm="24" :md="8" :span="8">
-        <el-card shadow="hover" class="card__px-0">
-          <el-tabs :model-value="'commission'">
-            <el-tab-pane label="账户统计" name="commission">
-              <AccountStatistics />
-            </el-tab-pane>
-          </el-tabs>
-        </el-card>
-      </el-col>
-      <el-col :xs="24" :sm="24" :md="16" :span="16">
-        <el-card shadow="hover" class="card__px-0">
-          <el-tabs :model-value="'sales'">
-            <el-tab-pane label="卡片销售情况" name="sales">
-              <SalesSituation />
-            </el-tab-pane>
-          </el-tabs>
-        </el-card>
-      </el-col>
+      <AccountStatistics class="mx-10px" />
+      <el-card shadow="hover" class="card__px-0 flex-1 min-w-[700px]">
+        <SalesSituation />
+      </el-card>
     </el-row>
 
     <el-card shadow="hover" class="card__px-0">

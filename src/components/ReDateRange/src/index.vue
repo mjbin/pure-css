@@ -180,7 +180,7 @@ watch(
 </script>
 
 <template>
-  <div>
+  <div class="bg-[#E9F1FF] rounded-2xl">
     <el-button
       v-for="(item, index) in btnsConfig"
       :key="index"
@@ -188,6 +188,7 @@ watch(
       :type="currentBtn === item.btnText ? 'primary' : item.type"
       :text="currentBtn === item.btnText ? false : item.text"
       size="small"
+      round
       @click="item.onClick(item.btnText)"
     >
       {{ item.btnText }}

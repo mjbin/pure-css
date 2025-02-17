@@ -1,18 +1,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import ReDateRange from "@/components/ReDateRange";
+import chartPie from "./chartPie.vue";
 
 interface StatData {
   label: string;
   value: number;
   unit: string;
 }
-
-const totalCards = ref<StatData>({
-  label: "出卡数量",
-  value: 124345,
-  unit: "张"
-});
 
 const statistics = ref<StatData[]>([
   {
@@ -50,39 +45,66 @@ const handleChange = dateRange => {
 </script>
 
 <template>
-  <div class="text-right">
+  <div class="flex justify-between">
+    <div class="text-md font-semibold">卡片销售概况</div>
     <ReDateRange
       v-model="dateRange"
       :defaultDateBtn="dateBtn"
       @onChange="handleChange"
     />
   </div>
-  <div class="flex mt-4 text-sm">
-    <!-- 总数据展示 -->
-    <div class="flex-none text-center border-r px-16 border-gray-200">
-      <div class="w-20 h-20 bg-[#69b1ff] rounded-full mx-auto" />
-      <div class="text-gray-500 mt-1">{{ totalCards.label }}</div>
-      <div class="text-2xl font-bold mt-1">
-        {{ formatNumber(totalCards.value) }}
-        <span class="text-base">({{ totalCards.unit }})</span>
-      </div>
-    </div>
-
-    <!-- 统计数据网格 -->
-    <div class="flex-1 grid grid-cols-2 text-center items-center">
-      <div v-for="item in statistics" :key="item.label">
-        <div class="text-gray-500">{{ item.label }}</div>
-        <div class="text-xl font-bold mt-1">
-          {{ formatNumber(item.value) }}
-          <span class="text-base">({{ item.unit }})</span>
-        </div>
-      </div>
-    </div>
+  <div class="flex mt-4">
+    <chartPie />
+    <el-row class="flex-1" justify="space-between">
+      <el-col
+        v-for="item in statistics"
+        :key="item.label"
+        :span="6"
+        class="px-1"
+      >
+        <el-card>
+          <div class="card-header">{{ item.label }}</div>
+          <div class="text-3xl font-semibold">
+            {{ formatNumber(item.value) }}
+          </div>
+          <div class="bg-[#EDF2FC] p-2 text-[#888]">
+            <div class="sub-card-header text-sm">上周激活数量</div>
+            <div class="flex justify-between text-xs">
+              <div>较上周同比</div>
+              <div>+20%</div>
+            </div>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .el-icon {
   --el-icon-size: inherit;
+}
+
+.card-header,
+.sub-card-header {
+  margin: 8px 0;
+
+  &::before {
+    width: 4px;
+    padding-left: 8px;
+    content: "";
+    border-left: 4px solid var(--el-color-primary);
+  }
+}
+
+.sub-card-header {
+  padding-bottom: 6px;
+  margin: 0;
+  margin-bottom: 6px;
+  border-bottom: 1px solid #e6e2e2;
+
+  &::before {
+    border-left: 4px solid #71d3fa;
+  }
 }
 </style>
