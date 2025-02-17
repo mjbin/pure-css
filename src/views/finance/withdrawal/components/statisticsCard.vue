@@ -13,18 +13,22 @@ const emit = defineEmits<{
         <div class="flex border-r border-gray-200 flex-row justify-center">
           <div class="w-16 h-16 bg-[#69b1ff] rounded-full mr-4" />
           <div>
-            <div class="flex items-center justify-center text-red-600">
+            <div
+              class="flex items-center justify-center text-[var(--el-color-primary)]"
+            >
               累计提现（元）
             </div>
             <div class="font-bold mt-1 text-center text-4xl">¥ 222</div>
-            <div class="text-xs text-gray-500">今年累计 ￥66,876</div>
+            <div class="text-xs text-[#999]">今年累计 ￥66,876</div>
           </div>
         </div>
       </re-col>
       <re-col :md="12" :sm="24" :xs="24" :value="8">
         <div class="flex justify-center items-end">
           <div>
-            <div class="flex items-center justify-center text-green-600">
+            <div
+              class="flex items-center justify-center text-[var(--el-color-primary)]"
+            >
               可提现（元）
             </div>
             <div class="font-bold mt-1 text-center text-4xl">
@@ -44,7 +48,9 @@ const emit = defineEmits<{
       <re-col :md="12" :sm="24" :xs="24" :value="8">
         <div class="flex justify-center items-end">
           <div>
-            <div class="flex items-center justify-center text-red-800">
+            <div
+              class="flex items-center justify-center text-[var(--el-color-primary)]"
+            >
               审批中（元）
             </div>
             <div class="font-bold mt-1 text-center text-4xl">
@@ -54,7 +60,6 @@ const emit = defineEmits<{
           <el-button
             class="ml-2 mb-1"
             type="primary"
-            plain
             round
             @click="emit('handleRecord')"
             >查看记录</el-button

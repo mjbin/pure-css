@@ -30,9 +30,14 @@ const onSubmit = async (formEl: FormInstance) => {
 <template>
   <el-card>
     <h3 class="my-6">修改密码</h3>
-    <el-form ref="userInfoFormRef" :model="userInfos" label-width="100px">
+    <el-form
+      ref="userInfoFormRef"
+      class="page-form"
+      :model="userInfos"
+      label-width="100px"
+    >
       <el-row>
-        <el-col :md="24" :lg="12">
+        <el-col :md="24" :lg="12" :xl="8">
           <el-form-item label="用户名" prop="nickname"> ccc </el-form-item>
           <el-form-item label="公司名称" prop="companyName"> ccc </el-form-item>
           <el-form-item label="旧密码" prop="oldPwd" :rules="rules.required">
@@ -64,21 +69,24 @@ const onSubmit = async (formEl: FormInstance) => {
               clearable
             />
           </el-form-item>
+          <el-form-item>
+            <el-button
+              class="my-4"
+              type="primary"
+              @click="onSubmit(userInfoFormRef)"
+            >
+              更新信息
+            </el-button>
+          </el-form-item>
         </el-col>
       </el-row>
       <el-alert
+        class="warn-banner"
         title="新密码不得与旧密码相同，修改密码后旧密码将不可用"
         type="warning"
         :closable="false"
         show-icon
       />
-      <el-button
-        class="my-4 float-right"
-        type="primary"
-        @click="onSubmit(userInfoFormRef)"
-      >
-        保存修改
-      </el-button>
     </el-form>
   </el-card>
 </template>

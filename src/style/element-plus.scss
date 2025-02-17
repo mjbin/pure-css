@@ -230,6 +230,13 @@
   border-radius: 12px !important;
 }
 
+.page-form {
+  .el-input__wrapper,
+  .el-textarea__inner {
+    background: #f7f7f7 !important;
+  }
+}
+
 /* 弹框样式 */
 .el-dialog {
   padding: 0 !important;
@@ -267,5 +274,20 @@
     text-align: center;
     background: #ebebeb;
     border-radius: 0 0 16px 16px;
+  }
+}
+
+/* 公告提醒栏 */
+.warn-banner.el-alert--warning.is-light {
+  padding: 32px 16px;
+  color: #999;
+  background: #f1f9ff;
+
+  .el-alert__description {
+    color: #999;
+  }
+
+  .el-icon {
+    color: var(--el-color-primary);
   }
 }

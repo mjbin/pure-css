@@ -26,7 +26,13 @@ defineExpose({ getRef });
 
 <template>
   <el-form ref="ruleFormRef" :model="newFormInline" label-width="100px">
-    <el-alert :closable="false" title="公告" type="warning">
+    <el-alert
+      class="warn-banner"
+      :closable="false"
+      title=""
+      type="warning"
+      show-icon
+    >
       <div class="flex flex-col">
         <div>1.无论交易金额大小，用户都需支付固定的手续费金额</div>
         <div>

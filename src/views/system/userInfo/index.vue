@@ -6,7 +6,7 @@ import { reactive, ref } from "vue";
 import type { FormInstance } from "element-plus";
 import ReCropperPreview from "@/components/ReCropperPreview";
 import { createFormData, deviceDetection } from "@pureadmin/utils";
-import uploadLine from "@iconify-icons/ri/upload-line";
+// import uploadLine from "@iconify-icons/ri/upload-line";
 import rules from "@/utils/rules";
 
 defineOptions({
@@ -108,9 +108,14 @@ const onSubmit = async (formEl: FormInstance) => {
 <template>
   <el-card>
     <h3 class="my-6">个人信息</h3>
-    <el-form ref="userInfoFormRef" :model="userInfos" label-width="100px">
+    <el-form
+      ref="userInfoFormRef"
+      class="page-form"
+      :model="userInfos"
+      label-width="100px"
+    >
       <el-row>
-        <el-col :md="24" :lg="12">
+        <el-col :md="24" :lg="12" :xl="8">
           <el-form-item label="头像">
             <el-avatar :size="80" :src="userInfos.avatar" />
             <el-upload
@@ -122,9 +127,9 @@ const onSubmit = async (formEl: FormInstance) => {
               :show-file-list="false"
               :on-change="onChange"
             >
-              <el-button plain class="ml-4">
-                <IconifyIconOffline :icon="uploadLine" />
-                <span class="ml-2">修改头像</span>
+              <el-button type="primary" size="small" plain class="ml-4">
+                <!-- <IconifyIconOffline :icon="uploadLine" /> -->
+                <span class="ml-2">编辑头像</span>
               </el-button>
             </el-upload>
           </el-form-item>
@@ -178,21 +183,24 @@ const onSubmit = async (formEl: FormInstance) => {
               show-word-limit
             />
           </el-form-item>
+          <el-form-item>
+            <el-button
+              class="my-4"
+              type="primary"
+              @click="onSubmit(userInfoFormRef)"
+            >
+              更新信息
+            </el-button>
+          </el-form-item>
         </el-col>
       </el-row>
       <el-alert
         title="请填写正确的联系电话，该号码将用于接收订单发货的短信通知，确保信息准确无误以便及时获取物流通知"
+        class="warn-banner"
         type="warning"
         :closable="false"
         show-icon
       />
-      <el-button
-        class="my-4 float-right"
-        type="primary"
-        @click="onSubmit(userInfoFormRef)"
-      >
-        更新信息
-      </el-button>
     </el-form>
     <el-dialog
       v-model="isShow"
