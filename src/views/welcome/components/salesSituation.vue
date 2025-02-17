@@ -53,8 +53,39 @@ const handleChange = dateRange => {
       @onChange="handleChange"
     />
   </div>
-  <div class="flex mt-4">
-    <chartPie />
+  <div class="flex mt-4 flex-wrap">
+    <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
+      <chartPie />
+    </el-col>
+    <el-col :xs="24" :sm="24" :md="12" :lg="16" :xl="18">
+      <el-row class="flex-1" justify="space-between">
+        <el-col
+          v-for="item in statistics"
+          :key="item.label"
+          :xs="12"
+          :sm="12"
+          :md="12"
+          :lg="6"
+          :xl="6"
+          class="px-1 pb-1"
+        >
+          <el-card>
+            <div class="card-header">{{ item.label }}</div>
+            <div class="text-3xl font-semibold">
+              {{ formatNumber(item.value) }}
+            </div>
+            <div class="bg-[#EDF2FC] p-2 text-[#888]">
+              <div class="sub-card-header text-sm">上周激活数量</div>
+              <div class="flex justify-between text-xs">
+                <div>较上周同比</div>
+                <div>+20%</div>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+    </el-col>
+    <!-- <chartPie />
     <el-row class="flex-1" justify="space-between">
       <el-col
         v-for="item in statistics"
@@ -76,7 +107,7 @@ const handleChange = dateRange => {
           </div>
         </el-card>
       </el-col>
-    </el-row>
+    </el-row> -->
   </div>
 </template>
 

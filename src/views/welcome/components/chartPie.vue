@@ -97,5 +97,5 @@ watch(
 </script>
 
 <template>
-  <div ref="chartRef" style="width: 360px; height: 200px" />
+  <div ref="chartRef" class="w-[100%] h-[200px]" />
 </template>

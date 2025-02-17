@@ -11,9 +11,12 @@ const activeName = ref("commission");
 
 <template>
   <div>
-    <el-row :gutter="20">
+    <el-row class="flex-wrap" :gutter="20">
       <AccountStatistics class="mx-10px" />
-      <el-card shadow="hover" class="card__px-0 flex-1 min-w-[700px]">
+      <el-card
+        shadow="hover"
+        class="card__px-0 xl:flex-1 xl:min-w-min lg:min-w-[100%]"
+      >
         <SalesSituation />
       </el-card>
     </el-row>
