@@ -169,9 +169,9 @@ const handleRecord = () => {
       >
         <template #operation="scope">
           <el-button
-            link
             type="primary"
             size="small"
+            plain
             @click.prevent="viewDetail(scope.row)"
           >
             查看

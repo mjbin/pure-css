@@ -38,10 +38,10 @@ const footerButtons = computed(() => {
             }
           },
           {
-            label: "确定",
+            label: "提交",
             type: "primary",
-            text: true,
-            bg: true,
+            // text: true,
+            // bg: true,
             popconfirm: options?.popconfirm,
             btnClick: ({ dialog: { options, index } }) => {
               if (options?.sureBtnLoading) {

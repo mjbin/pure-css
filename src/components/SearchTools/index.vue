@@ -11,19 +11,19 @@
       </div>
       <div class="flex-none pl-2 ml-4 flex">
         <IconifyIconOffline
-          class="text-[28px] pr-2 cursor-pointer hover:text-primary"
+          class="text-[28px] cursor-pointer hover:text-primary bg-[#F2F3F6] rounded-xl px-[4px] mr-2"
           :icon="BrushLine"
           @click="reset"
         />
         <IconifyIconOffline
           v-show="!isExpanded"
-          class="text-[28px] cursor-pointer hover:text-primary"
+          class="text-[28px] cursor-pointer hover:text-primary bg-[#F2F3F6] rounded-xl px-[4px]"
           :icon="ArrowDownDoubleFill"
           @click="toggle"
         />
         <IconifyIconOffline
           v-show="isExpanded"
-          class="text-[28px] cursor-pointer hover:text-primary"
+          class="text-[28px] cursor-pointer hover:text-primary bg-[#F2F3F6] rounded-xl px-[4px]"
           :icon="ArrowUpDoubleFill"
           @click="toggle"
         />

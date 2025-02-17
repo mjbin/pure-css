@@ -193,7 +193,6 @@ const {
         row-key="id"
         alignWhole="center"
         border
-        adaptive
         showOverflowTooltip
         :loading="loading"
         :loading-config="{ background: 'transparent' }"

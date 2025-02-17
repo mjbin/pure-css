@@ -136,15 +136,17 @@ const changeType = (v: string) => {
 
   .re-number-range-max {
     :deep(.el-input__wrapper) {
-      border-radius: var(--el-input-border-radius) 0 0
-        var(--el-input-border-radius);
+      // border-radius: var(--el-input-border-radius) 0 0
+      //   var(--el-input-border-radius);
+      border-radius: 12px 0 0 12px !important;
     }
   }
 
   .re-number-range-select {
     :deep(.el-select__wrapper) {
-      border-radius: 0 var(--el-border-radius-base) var(--el-border-radius-base)
-        0;
+      // border-radius: 0 var(--el-border-radius-base) var(--el-border-radius-base)
+      //   0;
+      border-radius: 0 12px 12px 0 !important;
     }
   }
 }

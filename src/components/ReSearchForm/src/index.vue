@@ -5,6 +5,7 @@ import { debouncedWatch } from "@vueuse/core";
 import SearchTools from "@/components/SearchTools/index.vue";
 import ReNumberRange from "@/components/ReNumberRange";
 import ReDateRange from "@/components/ReDateRange";
+import { Search } from "@element-plus/icons-vue";
 import { SearchForm } from "types/global";
 
 const emit = defineEmits(["change"]);
@@ -258,6 +259,7 @@ onMounted(() => {
                 v-model="params[condition.prop]"
                 :placeholder="condition.placeholder || '全部'"
                 :disabled="condition.disabled"
+                :suffix-icon="Search"
                 clearable
               />
               <!-- 筛选框 -->

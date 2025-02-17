@@ -187,3 +187,85 @@
     background: rgb(199 201 203); /* 滑块hover颜色 */
   }
 }
+
+/* 整个系统滚动条优化 */
+::-webkit-scrollbar {
+  width: 6px;
+
+  /* 滚动条宽度 */
+}
+
+/* 滚动条轨道 */
+::-webkit-scrollbar-track {
+  background: transparent;
+
+  /* 轨道颜色 */
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  background-color: rgb(221 222 224);
+  border-radius: 4px;
+}
+
+/* 滚动条滑块：hover状态 */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(199 201 203);
+
+  /* 滑块hover颜色 */
+}
+
+/* 表头样式 */
+.el-table {
+  th.el-table__cell,
+  .el-table__footer-wrapper tfoot td.el-table__cell {
+    background: #e9f1ff !important;
+  }
+}
+
+/* 各种筛选输入框样式 */
+.el-select__wrapper,
+.el-input__wrapper,
+.el-textarea__inner {
+  border-radius: 12px !important;
+}
+
+/* 弹框样式 */
+.el-dialog {
+  padding: 0 !important;
+  margin-top: 60px !important;
+  border-radius: 16px !important;
+
+  /* 弹框顶部 */
+  .el-dialog__header {
+    padding: 16px;
+    background: var(--el-color-primary);
+    border-radius: 16px 16px 0 0;
+
+    /* 弹框顶部按钮图标 */
+    .el-dialog__title,
+    .pure-dialog-svg,
+    .el-icon.el-dialog__close {
+      color: #fff;
+    }
+
+    .el-icon.el-dialog__close {
+      margin-right: 10px;
+    }
+  }
+
+  /* 弹框内容部分 */
+  .el-dialog__body {
+    max-height: calc(100vh - 200px);
+    padding: 16px;
+    overflow: auto;
+  }
+
+  /* 弹框底部 */
+  .el-dialog__footer {
+    padding: 15px;
+    text-align: center;
+    background: #ebebeb;
+    border-radius: 0 0 16px 16px;
+  }
+}
