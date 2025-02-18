@@ -26,7 +26,7 @@ const { isDark } = useDark();
 const theme = computed(() => (isDark.value ? "dark" : "light"));
 
 const chartRef = ref();
-const { setOptions } = useECharts(chartRef, {
+const { setOptions, getInstance } = useECharts(chartRef, {
   theme
 });
 
@@ -48,11 +48,12 @@ watch(
         right: 0
       },
       legend: {
-        data: ["总利润", "首充返润", "多充返润"],
+        data: ["总返润", "首充返润", "多充返润"],
         textStyle: {
           color: "#606266",
           fontSize: "0.875rem"
         },
+        selectedMode: false, // 禁用图例的点击事件
         bottom: 0
       },
       xAxis: [
@@ -81,7 +82,7 @@ watch(
       ],
       series: [
         {
-          name: "总利润",
+          name: "总返润",
           type: "line",
           smooth: true,
           itemStyle: {
@@ -118,6 +119,17 @@ watch(
     immediate: true
   }
 );
+// 展示或隐藏对应的折线
+const switchNameLine = (name: string) => {
+  getInstance().dispatchAction({
+    type: "legendToggleSelect",
+    name // 指定要切换的折线名称
+  });
+};
+
+defineExpose({
+  switchNameLine
+});
 </script>
 
 <template>

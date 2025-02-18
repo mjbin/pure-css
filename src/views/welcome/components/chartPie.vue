@@ -45,7 +45,9 @@ watch(
       },
       legend: {
         orient: "horizontal",
-        bottom: 0,
+        bottom: -5,
+        itemGap: 0,
+        width: "100%",
         left: "center"
       },
       series: [

@@ -2,6 +2,7 @@
 import { ref, reactive } from "vue";
 import ReDateRange from "@/components/ReDateRange";
 import ReNumberRange from "@/components/ReNumberRange";
+import { Search } from "@element-plus/icons-vue";
 import { useColumns } from "./columns";
 
 interface TableData {
@@ -37,6 +38,7 @@ const { loading, columns, dataList, pagination, onCurrentChange } =
           v-model="searchForm.batchNo"
           placeholder="批次号"
           class="!w-[160px]"
+          :suffix-icon="Search"
           clearable
         />
       </el-form-item>

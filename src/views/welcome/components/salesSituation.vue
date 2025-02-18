@@ -54,10 +54,10 @@ const handleChange = dateRange => {
     />
   </div>
   <div class="flex mt-4 flex-wrap">
-    <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
+    <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="7">
       <chartPie />
     </el-col>
-    <el-col :xs="24" :sm="24" :md="12" :lg="16" :xl="18">
+    <el-col :xs="24" :sm="24" :md="12" :lg="16" :xl="17">
       <el-row class="flex-1" justify="space-between">
         <el-col
           v-for="item in statistics"
@@ -75,7 +75,7 @@ const handleChange = dateRange => {
               {{ formatNumber(item.value) }}
             </div>
             <div class="bg-[#EDF2FC] p-2 text-[#888]">
-              <div class="sub-card-header text-sm">上周激活数量</div>
+              <div class="sub-card-header text-xs">上周激活数量</div>
               <div class="flex justify-between text-xs">
                 <div>较上周同比</div>
                 <div>+20%</div>
