@@ -13,7 +13,7 @@ const formatAmount = (amount: number) => {
 
 <template>
   <div
-    class="flex flex-col gap-6 text-sm w-[330px] h-[300px] left-card mx-[10px] p-4 text-[#fff]"
+    class="flex flex-col gap-6 text-sm w-[336px] h-[300px] left-card mx-[10px] p-4 text-[#fff]"
   >
     <div>账户统计</div>
     <div class="flex flex-col self-center">

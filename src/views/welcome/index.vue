@@ -44,10 +44,10 @@ const activeName = ref("commission");
 
 <style lang="scss" scoped>
 .card__px-0 {
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 
   :deep(.el-card__body) {
-    padding: 14px 20px 20px;
+    padding: 8px 16px 10px;
   }
 
   :deep(.el-tabs__item) {
