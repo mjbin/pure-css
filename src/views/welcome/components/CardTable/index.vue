@@ -32,23 +32,25 @@ const { loading, columns, dataList, pagination, onCurrentChange } =
 
 <template>
   <div class="p-4 rounded">
-    <el-form :model="searchForm" inline>
-      <el-form-item prop="batchNo">
-        <el-input
-          v-model="searchForm.batchNo"
-          placeholder="批次号"
-          class="!w-[160px]"
-          :suffix-icon="Search"
-          clearable
-        />
-      </el-form-item>
-      <el-form-item prop="activateRate">
-        <ReNumberRange
-          v-model="searchForm.activateRate"
-          v-model:type="searchForm.activateRateType"
-          placeholder="激活率"
-        />
-      </el-form-item>
+    <el-form class="flex justify-between" :model="searchForm" inline>
+      <div>
+        <el-form-item prop="batchNo">
+          <el-input
+            v-model="searchForm.batchNo"
+            placeholder="批次号"
+            class="!w-[160px]"
+            :suffix-icon="Search"
+            clearable
+          />
+        </el-form-item>
+        <el-form-item prop="activateRate">
+          <ReNumberRange
+            v-model="searchForm.activateRate"
+            v-model:type="searchForm.activateRateType"
+            placeholder="激活率"
+          />
+        </el-form-item>
+      </div>
       <el-form-item>
         <ReDateRange v-model="searchForm.dateRange" :defaultDateBtn="dateBtn" />
       </el-form-item>
