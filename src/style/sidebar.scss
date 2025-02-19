@@ -132,7 +132,8 @@
     &.has-logo {
       .el-scrollbar.pc {
         /* logo: 48px、leftCollapse: 40px、leftCollapse-shadow: 4px */
-        height: calc(100% - 92px);
+        // height: calc(100% - 92px);
+        height: calc(100% - 80px);
         background: #fff;
         border-radius: 0 0 10px 10px;
       }

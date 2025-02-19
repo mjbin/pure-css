@@ -146,7 +146,7 @@ const handleRecord = () => {
     <ReSearchForm :form-opt="formOpt" @change="handleSearch" />
     <el-card shadow="never" class="mt-4">
       <div class="mb-4">
-        <el-button type="primary" :icon="Download">导出</el-button>
+        <el-button type="primary" round :icon="Download">导出</el-button>
       </div>
       <pure-table
         row-key="id"

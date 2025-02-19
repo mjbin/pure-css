@@ -23,7 +23,7 @@ const formatAmount = (amount: number) => {
       </div>
       <el-button type="primary" plain round>申请提现</el-button>
     </div>
-    <div class="grid grid-cols-2 gap-4 py-1">
+    <div class="grid grid-cols-2 gap-4 pt-4">
       <div class="flex flex-col border-r border-gray-200">
         <div class="flex items-center justify-center gap-1">
           待支付成本

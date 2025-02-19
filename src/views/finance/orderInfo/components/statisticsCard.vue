@@ -38,7 +38,9 @@ const cardMap = [
       <el-card class="line-card" shadow="never">
         <div>
           <div class="grid grid-cols-2 gap-4 py-6">
-            <div class="flex border-r border-gray-200 flex-row justify-center">
+            <div
+              class="flex border-r-2 border-[#E9F1FF] flex-row justify-center"
+            >
               <div class="w-16 h-16 bg-[#69b1ff] rounded-full mr-4" />
               <div>
                 <div
