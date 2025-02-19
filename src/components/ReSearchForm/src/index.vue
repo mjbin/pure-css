@@ -187,7 +187,7 @@ onMounted(() => {
   <SearchTools form="form" @clear="resetForm">
     <template #default>
       <div class="flex items-center text-sm">
-        <span class="flex-none">筛选条件：</span>
+        <span class="flex-none mt-2">筛选条件：</span>
         <div class="flex-auto text-[12px]">
           <div
             v-for="(item, index) in formOpt.conditions"
@@ -229,6 +229,8 @@ onMounted(() => {
       <el-form
         ref="formRef"
         name="formRef"
+        class="search-form"
+        size="small"
         :model="params"
         :label-position="!!formOpt.inline ? 'left' : 'top'"
         :inline="!!formOpt.inline"

@@ -7,14 +7,20 @@ const emit = defineEmits<{
 }>();
 </script>
 <template>
-  <el-card class="mb-4">
+  <el-card class="mb-4 py-6">
     <el-row :gutter="24" justify="space-around">
-      <re-col :md="12" :sm="24" :xs="24" :value="8">
-        <div class="flex border-r border-gray-200 flex-row justify-center">
+      <re-col
+        :md="12"
+        :sm="24"
+        :xs="24"
+        :value="8"
+        class="border-r-2 border-[#E9F1FF]"
+      >
+        <div class="flex flex-row justify-center">
           <div class="w-16 h-16 bg-[#69b1ff] rounded-full mr-4" />
           <div>
             <div
-              class="flex items-center justify-center text-[var(--el-color-primary)]"
+              class="flex items-center justify-center text-[var(--el-color-primary)] font-semibold"
             >
               累计提现（元）
             </div>
@@ -23,11 +29,17 @@ const emit = defineEmits<{
           </div>
         </div>
       </re-col>
-      <re-col :md="12" :sm="24" :xs="24" :value="8">
+      <re-col
+        :md="12"
+        :sm="24"
+        :xs="24"
+        :value="8"
+        class="border-r-2 border-[#E9F1FF]"
+      >
         <div class="flex justify-center items-end">
           <div>
             <div
-              class="flex items-center justify-center text-[var(--el-color-primary)]"
+              class="flex items-center justify-center text-[var(--el-color-primary)] font-semibold"
             >
               可提现（元）
             </div>
@@ -49,7 +61,7 @@ const emit = defineEmits<{
         <div class="flex justify-center items-end">
           <div>
             <div
-              class="flex items-center justify-center text-[var(--el-color-primary)]"
+              class="flex items-center justify-center text-[var(--el-color-primary)] font-semibold"
             >
               审批中（元）
             </div>

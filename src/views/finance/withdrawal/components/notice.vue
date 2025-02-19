@@ -39,4 +39,8 @@ vue3-marquee 的核心优势在于其简洁性和高效性。它不依赖任何�
   color: var(--el-color-warning);
   background-color: var(--el-color-warning-light-9);
 }
+
+.el-alert--warning.is-light {
+  color: #eb6e38;
+}
 </style>

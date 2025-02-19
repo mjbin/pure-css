@@ -230,6 +230,22 @@
   border-radius: 12px !important;
 }
 
+/* 列表筛选组件各种筛选输入框样式 */
+.search-form {
+  .el-form-item__label,
+  .el-select__wrapper,
+  .el-input__wrapper {
+    min-height: 30px !important;
+    font-size: 13px;
+    line-height: 30px !important;
+  }
+
+  .el-select__wrapper,
+  .el-input__wrapper {
+    padding: 2px 12px !important;
+  }
+}
+
 .page-form {
   .el-input__wrapper,
   .el-textarea__inner {

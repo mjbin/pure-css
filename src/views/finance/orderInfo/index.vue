@@ -145,7 +145,7 @@ const formOpt = ref<SearchForm.FormOpt>({
       defaultValue: ""
     },
     {
-      label: "套餐类型:",
+      label: "套餐类型",
       prop: "tcType",
       lg: 6,
       xl: 4,
